@@ -3,6 +3,8 @@
 #include <time.h>
 #include <stdbool.h>
 
+#define N 10
+
 typedef struct {
 	int nlinhas;
 	int ncolunas;
@@ -80,11 +82,12 @@ void mostra_mapa_cor(tmapa *m) {
 	printf("%d %d %d\n", m->nlinhas, m->ncolunas, m->ncores);
 
 	for(i = 0; i < m->nlinhas; i++) {
-		for(j = 0; j < m->ncolunas; j++)
+		for(j = 0; j < m->ncolunas; j++) {
 			if(m->ncores > 10)
 				printf("%s%02d%s ", cor_ansi[m->mapa[i][j]], m->mapa[i][j], cor_ansi[0]);
 			else
 				printf("%s%d%s ", cor_ansi[m->mapa[i][j]], m->mapa[i][j], cor_ansi[0]);
+		}
 
 		printf("\n");
   }
@@ -111,6 +114,18 @@ void pinta_mapa(tmapa *m, int cor) {
 		return;
 
 	pinta(m, 0, 0, m->mapa[0][0], cor);
+}
+
+void copia_mapa(tmapa *fonte, tmapa *copia) {
+	int i, j;
+
+	for (i = 0; i < fonte->nlinhas; i++)
+		for (j = 0; j < fonte->ncolunas; j++) {
+			//printf("i: %d\tj: %d\n", i, j);
+			//printf("fonte[0][0]: %d\n", fonte->mapa[0][0]);
+			//printf("copia[0][0]: %d\n", copia->mapa[0][0]);
+			copia->mapa[i][j] = fonte->mapa[i][j];
+		}
 }
 
 bool precisa_resolver_mapa(tmapa *m) {
@@ -156,21 +171,33 @@ int conta_flodados(tmapa *m, int l, int c, int fundo, int cor) {
 	return 0;
 }
 
+int conta_cor(tmapa *m, int cor) {
+	int count = 0;
+
+	for (int i = 0; i < m->nlinhas; ++i)
+		for (int j = 0; j < m->ncolunas; j++)
+			if (m->mapa[i][j] == cor)
+				count++;
+
+	return count;
+		
+}
+
 int escolha_gulosa_por_heuristica(tmapa *m, int fundo) {
-	int n_cores = m->ncores + 1, maior = 1, aux, escolha;
+	int n_cores = m->ncores + 1, maior = 0, aux, escolha;
 
 	for (int i = 1; i < n_cores; ++i) {
 		// nao considere pintar com a cor do fundo, evita calculos inuteis
 		if (i == fundo)
 			continue;
 
-		aux = conta_flodados(m, 0, 0, fundo, i);
+		aux = conta_cor(m, i);
 
 		if (aux > maior) {
 		 	maior = aux;
 		 	escolha = i;
 
-		 	printf("conta_flodados pintando com a cor %d: %d\n", escolha, maior);
+		 	printf("%d blocos de cor %d\n", maior, escolha);
 		}
 	}
 
@@ -180,38 +207,44 @@ int escolha_gulosa_por_heuristica(tmapa *m, int fundo) {
 }
 
 int main(int argc, char **argv) {
-	tmapa m;
+	tmapa m, testa_passo;
 
-	m.nlinhas = 3;
-	m.ncolunas = 3;
-	m.ncores = 3;
+	m.nlinhas = N;
+	m.ncolunas = N;
+	m.ncores = N;
+
+	testa_passo.nlinhas = N;
+	testa_passo.ncolunas = N;
+	testa_passo.ncores = N;
 
 	int cor, index_passos, passos[m.nlinhas * m.ncolunas];
 
 	gera_mapa(&m, -1);
-	mostra_mapa_cor(&m);
+	//mostra_mapa(&m);
+
+	testa_passo.mapa = (int**) malloc(testa_passo.nlinhas * sizeof(int*));
+
+	for(int i = 0; i < testa_passo.nlinhas; i++)
+		testa_passo.mapa[i] = (int*) malloc(testa_passo.ncolunas * sizeof(int));
+
+	copia_mapa(&m, &testa_passo);
 
 	printf("\n");
 
-	// executa heuristica olhando um nivel abaixo apenas
-	cor = escolha_gulosa_por_heuristica(&m, m.mapa[0][0]);
+	for(index_passos = 0; precisa_resolver_mapa(&m); ++index_passos) {
+		// executa heuristica olhando um nivel abaixo apenas
+		cor = escolha_gulosa_por_heuristica(&testa_passo, testa_passo.mapa[0][0]);
 
-	passos[0] = cor;
+		passos[index_passos] = cor;
 
-	for(index_passos = 1; precisa_resolver_mapa(&m); ++index_passos) {
 		pinta_mapa(&m, cor);
-		mostra_mapa_cor(&m); // para mostrar sem cores use mostra_mapa(&m);
+
+		//mostra_mapa(&m); // para mostrar sem cores use mostra_mapa(&m);
 
 		printf("\n");
 
-		// executa heuristica olhando um nivel abaixo apenas
-		cor = escolha_gulosa_por_heuristica(&m, m.mapa[0][0]);
-
-		passos[index_passos] = cor;
+		copia_mapa(&m, &testa_passo);
 	}
-
-	// ajeitando variaveis para imprimir a saida
-	index_passos--;
 
 	printf("tamanho da solução = %d\n", index_passos);
 
