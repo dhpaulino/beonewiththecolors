@@ -2,6 +2,13 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdbool.h>
+#include "fila.c"
+
+#define passei_fundo 6
+typedef struct posicao{
+	unsigned int lin, col;
+} posicao;
+
 
 #define N 10
 
@@ -10,7 +17,11 @@ typedef struct {
 	int ncolunas;
 	int ncores;
 	int **mapa;
+	unsigned qtd_flood;
+	posicao *boarda;
 } tmapa;
+
+
 
 void gera_mapa(tmapa *m, int semente) {
 	int i, j;
@@ -116,18 +127,6 @@ void pinta_mapa(tmapa *m, int cor) {
 	pinta(m, 0, 0, m->mapa[0][0], cor);
 }
 
-void copia_mapa(tmapa *fonte, tmapa *copia) {
-	int i, j;
-
-	for (i = 0; i < fonte->nlinhas; i++)
-		for (j = 0; j < fonte->ncolunas; j++) {
-			//printf("i: %d\tj: %d\n", i, j);
-			//printf("fonte[0][0]: %d\n", fonte->mapa[0][0]);
-			//printf("copia[0][0]: %d\n", copia->mapa[0][0]);
-			copia->mapa[i][j] = fonte->mapa[i][j];
-		}
-}
-
 bool precisa_resolver_mapa(tmapa *m) {
 	int fundo = m->mapa[0][0];
 
@@ -152,23 +151,15 @@ int conta_borda_flodados(tmapa *m, int l, int c, int cor) {
 				return 1;
 }
 
-// ele conta mais vezes do que o exato significado de contar os flodados mas serve como heuristica
-int conta_flodados(tmapa *m, int l, int c, int fundo, int cor) {
-	if (m->mapa[l][c] == fundo) {
-		if (l < m->nlinhas - 1 && c < m->ncolunas - 1)
-			return 1 + conta_flodados(m, l + 1, c, fundo, cor) + conta_flodados(m, l, c + 1, fundo, cor);
-		else
-			if (l < m->nlinhas - 1)
-				return 1 + conta_flodados(m, l + 1, c, fundo, cor);
-			else
-				if (c < m->ncolunas - 1)
-					return 1 + conta_flodados(m, l, c + 1, fundo, cor);
-	}
-	else
-		if (m->mapa[l][c] == cor)
-			conta_borda_flodados(m, l, c, cor);
 
-	return 0;
+void copia_mapa(tmapa *fonte, tmapa *copia) {
+	copia->nlinhas = fonte->nlinhas;
+	copia->ncolunas = fonte->ncolunas;
+	copia->ncores = fonte->ncores;
+
+	for (int i = 0; i < fonte->nlinhas; i++)
+		for (int j = 0; j < fonte->ncolunas; j++)
+			copia->mapa[i][j] = fonte->mapa[i][j];
 }
 
 int conta_cor(tmapa *m, int cor) {
@@ -186,74 +177,113 @@ int conta_cor(tmapa *m, int cor) {
 int escolha_gulosa_por_heuristica(tmapa *m, int fundo) {
 	int n_cores = m->ncores + 1, maior = 0, aux, escolha;
 
-	for (int i = 1; i < n_cores; ++i) {
-		// nao considere pintar com a cor do fundo, evita calculos inuteis
-		if (i == fundo)
-			continue;
 
-		aux = conta_cor(m, i);
+	tmapa* m_copia = malloc(sizeof(tmapa));
 
-		if (aux > maior) {
-		 	maior = aux;
-		 	escolha = i;
+	m_copia->mapa = (int**) malloc(m->nlinhas * sizeof(int*));
 
-		 	printf("%d blocos de cor %d\n", maior, escolha);
-		}
-	}
+	for(int i = 0; i < m->nlinhas; i++) {
+		m_copia->mapa[i] = (int*) malloc(m->ncolunas * sizeof(int));
+  	}
+
+  
+			//conta_flodados(m, fundo);
 
 	printf("\n");
 
 	return escolha;
 }
 
+void detecta_clusters(tmapa* m){
+
+	Fila proximas_pos = constroi_fila();
+	int cor;
+	
+	//percorre todas as posições da matriz, ignorando aquelas que estão marcadas com -1
+	for(int i=0;i<m->nlinhas;++i){
+		for(int j=0;j<m->ncolunas;++j){
+			if(m->mapa[i][j] == -1)
+				continue;
+			
+			posicao* atual = malloc(sizeof(posicao));
+			atual->lin = i;
+			atual->col = j;
+			enfileira(atual, proximas_pos);
+			cor = m->mapa[atual->lin][atual->col];
+			m->mapa[atual->lin][atual->col] = -1;
+
+			printf("Cluster: %i,%i\n", atual->lin, atual->col);
+			while(atual = desenfileira(proximas_pos)){
+				printf("atual: %i,%i\n", atual->lin, atual->col);
+
+
+				//vizinho esquerda
+				if(atual->col != 0){
+					
+					if(m->mapa[atual->lin][atual->col-1] == cor){
+						//marca como já passado
+						m->mapa[atual->lin][atual->col-1] = -1;
+						posicao* viz_esq = malloc(sizeof(posicao));
+						viz_esq->lin = atual->lin;
+						viz_esq->col = atual->col-1;
+						enfileira(viz_esq, proximas_pos);
+					}
+				}
+				//vizinho direita
+				if(atual->col != m->ncolunas -1){
+					if(m->mapa[atual->lin][atual->col+1] == cor){
+						m->mapa[atual->lin][atual->col+1] = -1;
+						posicao* viz_dir = malloc(sizeof(posicao));
+						viz_dir->lin = atual->lin;
+						viz_dir->col = atual->col+1;
+						enfileira(viz_dir, proximas_pos);
+					}
+				}
+				//vizinho baixo
+				if(atual->lin != m->nlinhas -1){
+					if(m->mapa[atual->lin+1][atual->col] == cor){
+						m->mapa[atual->lin+1][atual->col] = -1;
+						posicao* viz_baixo = malloc(sizeof(posicao));
+						viz_baixo->lin = atual->lin+1;
+						viz_baixo->col = atual->col;
+						enfileira(viz_baixo, proximas_pos);
+					}
+				}
+				//vizinho cima
+				if(atual->lin != 0){
+					if(m->mapa[atual->lin-1][atual->col] == cor){
+						m->mapa[atual->lin-1][atual->col] = -1;
+						posicao* viz_cima = malloc(sizeof(posicao));
+						viz_cima->lin = atual->lin-1;
+						viz_cima->col = atual->col;
+						enfileira(viz_cima, proximas_pos);
+					}
+				}
+				free(atual);
+			}
+		}
+	}
+
+}
 int main(int argc, char **argv) {
 	tmapa m, testa_passo;
 
+
 	m.nlinhas = N;
 	m.ncolunas = N;
-	m.ncores = N;
+	m.ncores = 2;
 
 	testa_passo.nlinhas = N;
 	testa_passo.ncolunas = N;
 	testa_passo.ncores = N;
 
+
 	int cor, index_passos, passos[m.nlinhas * m.ncolunas];
 
 	gera_mapa(&m, -1);
 	//mostra_mapa(&m);
-
-	testa_passo.mapa = (int**) malloc(testa_passo.nlinhas * sizeof(int*));
-
-	for(int i = 0; i < testa_passo.nlinhas; i++)
-		testa_passo.mapa[i] = (int*) malloc(testa_passo.ncolunas * sizeof(int));
-
-	copia_mapa(&m, &testa_passo);
-
-	printf("\n");
-
-	for(index_passos = 0; precisa_resolver_mapa(&m); ++index_passos) {
-		// executa heuristica olhando um nivel abaixo apenas
-		cor = escolha_gulosa_por_heuristica(&testa_passo, testa_passo.mapa[0][0]);
-
-		passos[index_passos] = cor;
-
-		pinta_mapa(&m, cor);
-
-		//mostra_mapa(&m); // para mostrar sem cores use mostra_mapa(&m);
-
-		printf("\n");
-
-		copia_mapa(&m, &testa_passo);
-	}
-
-	printf("tamanho da solução = %d\n", index_passos);
-
-	// impressao da solucao
-	for (int i = 0; i < index_passos; ++i)
-		printf("%d ", passos[i]);
-
-	// termina a saida com 'pula linha'
-	printf("\n");
+	mostra_mapa_cor(&m);
+	detecta_clusters(&m);
 
 	return 0;
 }
