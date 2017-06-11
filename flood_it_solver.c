@@ -4,21 +4,18 @@
 #include <stdbool.h>
 #include "fila.c"
 
-#define passei_fundo 6
-typedef struct posicao{
+#define N 10
+
+
+typedef struct posicao {
 	unsigned int lin, col;
 } posicao;
-
-
-#define N 10
 
 typedef struct {
 	int nlinhas;
 	int ncolunas;
 	int ncores;
 	int **mapa;
-	unsigned qtd_flood;
-	posicao *boarda;
 } tmapa;
 
 
@@ -38,7 +35,7 @@ void gera_mapa(tmapa *m, int semente) {
 
 		for(j = 0; j < m->ncolunas; j++)
 			m->mapa[i][j] = 1 + rand() % m->ncores;
-  }
+	}
 }
 
 void carrega_mapa(tmapa *m) {
@@ -54,7 +51,7 @@ void carrega_mapa(tmapa *m) {
 
 		for(j = 0; j < m->ncolunas; j++)
 			scanf("%d", &(m->mapa[i][j]));
-  }
+	}
 }
 
 void mostra_mapa(tmapa *m) {
@@ -70,7 +67,7 @@ void mostra_mapa(tmapa *m) {
 				printf("%d ", m->mapa[i][j]);
 
 		printf("\n");
-  }
+	}
 }
 
 void mostra_mapa_cor(tmapa *m) {
@@ -101,7 +98,7 @@ void mostra_mapa_cor(tmapa *m) {
 		}
 
 		printf("\n");
-  }
+	}
 }
 
 void pinta(tmapa *m, int l, int c, int fundo, int cor) {
@@ -127,30 +124,23 @@ void pinta_mapa(tmapa *m, int cor) {
 	pinta(m, 0, 0, m->mapa[0][0], cor);
 }
 
-bool precisa_resolver_mapa(tmapa *m) {
-	int fundo = m->mapa[0][0];
+// verifica qual cor ainda precisa ser resolvida
+// cores[0] indica se o mapa esta completo
+void verifica_cores_mapa(tmapa *m, bool *cores) {
+	int fundo = m->mapa[0][0], n_cores = m->ncores + 1;
 
-	for (int l = 0; l < m->nlinhas; ++l)
-		for (int c = 0; c < m->ncolunas; ++c)
-			if (m->mapa[l][c] != fundo)
-				return true;
+	for (int i = 0; i < n_cores; i++)
+		cores[i] = false;
 
-	return false;
+	cores[fundo] = true;
+
+	for (int l = 0; l < m->nlinhas; l++)
+		for (int c = 0; c < m->ncolunas; c++)
+			if (m->mapa[l][c] != fundo) {
+				cores[m->mapa[l][c]] = true;
+				cores[0] = true;
+			}
 }
-
-int conta_borda_flodados(tmapa *m, int l, int c, int cor) {
-	if (l < m->nlinhas - 1 && c < m->ncolunas - 1)
-		return 1 + conta_borda_flodados(m, l + 1, c, cor) + conta_borda_flodados(m, l, c + 1, cor);
-	else
-		if (l < m->nlinhas - 1)
-			return 1 + conta_borda_flodados(m, l + 1, c, cor);
-		else
-			if (c < m->ncolunas - 1)
-				return 1 + conta_borda_flodados(m, l, c + 1, cor);
-			else
-				return 1;
-}
-
 
 void copia_mapa(tmapa *fonte, tmapa *copia) {
 	copia->nlinhas = fonte->nlinhas;
@@ -162,128 +152,155 @@ void copia_mapa(tmapa *fonte, tmapa *copia) {
 			copia->mapa[i][j] = fonte->mapa[i][j];
 }
 
-int conta_cor(tmapa *m, int cor) {
-	int count = 0;
-
-	for (int i = 0; i < m->nlinhas; ++i)
-		for (int j = 0; j < m->ncolunas; j++)
-			if (m->mapa[i][j] == cor)
-				count++;
-
-	return count;
-		
-}
-
-int escolha_gulosa_por_heuristica(tmapa *m, int fundo) {
-	int n_cores = m->ncores + 1, maior = 0, aux, escolha;
-
-
-	tmapa* m_copia = malloc(sizeof(tmapa));
-
-	m_copia->mapa = (int**) malloc(m->nlinhas * sizeof(int*));
-
-	for(int i = 0; i < m->nlinhas; i++) {
-		m_copia->mapa[i] = (int*) malloc(m->ncolunas * sizeof(int));
-  	}
-
-  
-			//conta_flodados(m, fundo);
-
-	printf("\n");
-
-	return escolha;
-}
-
-void detecta_clusters(tmapa* m){
+int conta_fundo(tmapa* m) {
 
 	Fila proximas_pos = constroi_fila();
-	int cor;
-	
-	//percorre todas as posições da matriz, ignorando aquelas que estão marcadas com -1
-	for(int i=0;i<m->nlinhas;++i){
-		for(int j=0;j<m->ncolunas;++j){
-			if(m->mapa[i][j] == -1)
-				continue;
-			
-			posicao* atual = malloc(sizeof(posicao));
-			atual->lin = i;
-			atual->col = j;
-			enfileira(atual, proximas_pos);
-			cor = m->mapa[atual->lin][atual->col];
-			m->mapa[atual->lin][atual->col] = -1;
+	int cor, count = 1;
 
-			printf("Cluster: %i,%i\n", atual->lin, atual->col);
-			while(atual = desenfileira(proximas_pos)){
-				printf("atual: %i,%i\n", atual->lin, atual->col);
+	posicao* atual = malloc(sizeof(posicao));
+	atual->lin = 0;
+	atual->col = 0;
+	enfileira(atual, proximas_pos);
+	cor = m->mapa[atual->lin][atual->col];
+	m->mapa[atual->lin][atual->col] = 0;
 
+	//printf("Cluster: %i,%i\n", atual->lin, atual->col);
+	while((atual = desenfileira(proximas_pos))) {
+		//printf("atual: %i,%i\n", atual->lin, atual->col);
 
-				//vizinho esquerda
-				if(atual->col != 0){
-					
-					if(m->mapa[atual->lin][atual->col-1] == cor){
-						//marca como já passado
-						m->mapa[atual->lin][atual->col-1] = -1;
-						posicao* viz_esq = malloc(sizeof(posicao));
-						viz_esq->lin = atual->lin;
-						viz_esq->col = atual->col-1;
-						enfileira(viz_esq, proximas_pos);
-					}
-				}
-				//vizinho direita
-				if(atual->col != m->ncolunas -1){
-					if(m->mapa[atual->lin][atual->col+1] == cor){
-						m->mapa[atual->lin][atual->col+1] = -1;
-						posicao* viz_dir = malloc(sizeof(posicao));
-						viz_dir->lin = atual->lin;
-						viz_dir->col = atual->col+1;
-						enfileira(viz_dir, proximas_pos);
-					}
-				}
-				//vizinho baixo
-				if(atual->lin != m->nlinhas -1){
-					if(m->mapa[atual->lin+1][atual->col] == cor){
-						m->mapa[atual->lin+1][atual->col] = -1;
-						posicao* viz_baixo = malloc(sizeof(posicao));
-						viz_baixo->lin = atual->lin+1;
-						viz_baixo->col = atual->col;
-						enfileira(viz_baixo, proximas_pos);
-					}
-				}
-				//vizinho cima
-				if(atual->lin != 0){
-					if(m->mapa[atual->lin-1][atual->col] == cor){
-						m->mapa[atual->lin-1][atual->col] = -1;
-						posicao* viz_cima = malloc(sizeof(posicao));
-						viz_cima->lin = atual->lin-1;
-						viz_cima->col = atual->col;
-						enfileira(viz_cima, proximas_pos);
-					}
-				}
-				free(atual);
-			}
+		//vizinho esquerda
+		if(atual->col != 0 && m->mapa[atual->lin][atual->col - 1] == cor) {
+			count++;
+			m->mapa[atual->lin][atual->col - 1] = 0;
+			posicao* viz_esq = malloc(sizeof(posicao));
+			viz_esq->lin = atual->lin;
+			viz_esq->col = atual->col - 1;
+			enfileira(viz_esq, proximas_pos);
+		}
+
+		//vizinho direita
+		if(atual->col != m->ncolunas - 1 && m->mapa[atual->lin][atual->col + 1] == cor) {
+			count++;
+			m->mapa[atual->lin][atual->col + 1] = 0;
+			posicao* viz_dir = malloc(sizeof(posicao));
+			viz_dir->lin = atual->lin;
+			viz_dir->col = atual->col + 1;
+			enfileira(viz_dir, proximas_pos);
+		}
+
+		//vizinho baixo
+		if(atual->lin != m->nlinhas - 1 && m->mapa[atual->lin + 1][atual->col] == cor) {
+			count++;
+			m->mapa[atual->lin + 1][atual->col] = 0;
+			posicao* viz_baixo = malloc(sizeof(posicao));
+			viz_baixo->lin = atual->lin + 1;
+			viz_baixo->col = atual->col;
+			enfileira(viz_baixo, proximas_pos);
+		}
+
+		//vizinho cima
+		if(atual->lin != 0 && m->mapa[atual->lin - 1][atual->col] == cor) {
+			count++;
+			m->mapa[atual->lin - 1][atual->col] = 0;
+			posicao* viz_cima = malloc(sizeof(posicao));
+			viz_cima->lin = atual->lin - 1;
+			viz_cima->col = atual->col;
+			enfileira(viz_cima, proximas_pos);
+		}
+
+		free(atual);
+	}
+
+	return count;
+
+}
+
+int escolha_gulosa_por_heuristica(tmapa *m, tmapa *testa_passo, bool *cores) {
+	int n_cores = m->ncores + 1, fundo = m->mapa[0][0], aux, maior = 1, escolha;
+
+	for (int i = 1; i < n_cores; i++) {
+		// nao considere pintar com cores eliminadas ou a cor do fundo, evita calculos inuteis
+		if (!cores[i] || i == fundo) {
+			continue;
+		}
+
+		// copia mapa atual para testar a cor i
+		copia_mapa(m, testa_passo);
+
+		// testa a cor i
+		pinta_mapa(testa_passo, i);
+
+		// calcula o tamanho do fundo
+		aux = conta_fundo(testa_passo);
+
+		// guarda o maior e a cor
+		if (aux > maior) {
+			maior = aux;
+			escolha = i;
 		}
 	}
 
+	return escolha;
+
 }
+
 int main(int argc, char **argv) {
 	tmapa m, testa_passo;
 
-
 	m.nlinhas = N;
 	m.ncolunas = N;
-	m.ncores = 2;
+	m.ncores = N;
 
-	testa_passo.nlinhas = N;
-	testa_passo.ncolunas = N;
-	testa_passo.ncores = N;
+	testa_passo.nlinhas = m.nlinhas;
+	testa_passo.ncolunas = m.ncolunas;
+	testa_passo.ncores = m.ncores;
 
+	int index_passos, passos[m.nlinhas * m.ncolunas], passo;
+	bool cores[N + 1];
 
-	int cor, index_passos, passos[m.nlinhas * m.ncolunas];
+	testa_passo.mapa = (int**) malloc(testa_passo.nlinhas * sizeof(int*));
+
+	for(int i = 0; i < m.nlinhas; i++) {
+		testa_passo.mapa[i] = (int*) malloc(testa_passo.ncolunas * sizeof(int));
+	}
 
 	gera_mapa(&m, -1);
-	//mostra_mapa(&m);
-	mostra_mapa_cor(&m);
-	detecta_clusters(&m);
+
+	// verifica a existencia de cada cor no mapa
+	verifica_cores_mapa(&m, cores);
+
+	for(index_passos = 0; cores[0]; index_passos++) {
+		//mostra_mapa_cor(&m);
+
+		//printf("\n");
+
+		// calcula proximo passo usando um mapa de teste copiado do mapa atual
+		passo = escolha_gulosa_por_heuristica(&m, &testa_passo, cores);
+
+		// salva para imprimir no final
+		passos[index_passos] = passo;
+
+		// altera mapa atual executando o passo
+		pinta_mapa(&m, passo);
+
+		// verifica a existencia de cada cor no mapa
+		verifica_cores_mapa(&m, cores);
+	}
+
+	//mostra_mapa_cor(&m);
+
+	//printf("\n");
+
+	// tamanho da solucao
+	printf("%d\n", index_passos);
+
+	// impressao da solucao
+	for (int i = 0; i < index_passos; i++) {
+		printf("%d ", passos[i]);
+	}
+
+	printf("\n");
 
 	return 0;
+
 }
