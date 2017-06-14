@@ -3,14 +3,13 @@
 #include <time.h>
 #include <stdbool.h>
 #include "fila.c"
+#include "grafo.h"
 
 #define passei_fundo 6
-typedef struct posicao{
-	unsigned int lin, col;
-} posicao;
 
 
-#define N 10
+
+#define N 4
 
 typedef struct {
 	int nlinhas;
@@ -194,77 +193,149 @@ int escolha_gulosa_por_heuristica(tmapa *m, int fundo) {
 	return escolha;
 }
 
-void detecta_clusters(tmapa* m){
+int detecta_clusters(tmapa* m){
 
-	Fila proximas_pos = constroi_fila();
-	int cor;
-	
-	//percorre todas as posições da matriz, ignorando aquelas que estão marcadas com -1
-	for(int i=0;i<m->nlinhas;++i){
-		for(int j=0;j<m->ncolunas;++j){
-			if(m->mapa[i][j] == -1)
-				continue;
+  Fila proximas_pos = constroi_fila();
+  int cor;
+  int qtd_clusters = 0;
+  //percorre todas as posições da matriz, ignorando aquelas que estão marcadas com -1
+  for(int i=0;i<m->nlinhas;++i){
+    for(int j=0;j<m->ncolunas;++j){
+      if(m->mapa[i][j] <=0)//tem id
+        continue;
+      
+      posicao* atual = malloc(sizeof(posicao));
+      atual->lin = i;
+      atual->col = j;
+      enfileira(atual, proximas_pos);
+      cor = m->mapa[atual->lin][atual->col];
+      m->mapa[atual->lin][atual->col] = -1;
+      int id = -1*qtd_clusters;
+
+      printf("Cluster: %i,%i  cor:%i\n", atual->lin, atual->col, cor);
+      while(atual = desenfileira(proximas_pos)){
+        printf("atual: %i,%i\n", atual->lin, atual->col);
+
+
+        //vizinho esquerda
+        if(atual->col != 0){
+          
+          if(m->mapa[atual->lin][atual->col-1] == cor){
+            //marca como já passado
+            m->mapa[atual->lin][atual->col-1] = id;
+            posicao* viz_esq = malloc(sizeof(posicao));
+            viz_esq->lin = atual->lin;
+            viz_esq->col = atual->col-1;
+            enfileira(viz_esq, proximas_pos);
+          }
+        }
+        //vizinho direita
+        if(atual->col != m->ncolunas -1){
+          if(m->mapa[atual->lin][atual->col+1] == cor){
+            m->mapa[atual->lin][atual->col+1] = id;
+            posicao* viz_dir = malloc(sizeof(posicao));
+            viz_dir->lin = atual->lin;
+            viz_dir->col = atual->col+1;
+            enfileira(viz_dir, proximas_pos);
+          }
+        }
+        //vizinho baixo
+        if(atual->lin != m->nlinhas -1){
+          if(m->mapa[atual->lin+1][atual->col] == cor){
+            m->mapa[atual->lin+1][atual->col] = id;
+            posicao* viz_baixo = malloc(sizeof(posicao));
+            viz_baixo->lin = atual->lin+1;
+            viz_baixo->col = atual->col;
+            enfileira(viz_baixo, proximas_pos);
+          }
+        }
+        //vizinho cima
+        if(atual->lin != 0){
+          if(m->mapa[atual->lin-1][atual->col] == cor){
+            m->mapa[atual->lin-1][atual->col] = id;
+            posicao* viz_cima = malloc(sizeof(posicao));
+            viz_cima->lin = atual->lin-1;
+            viz_cima->col = atual->col;
+            enfileira(viz_cima, proximas_pos);
+          }
+        }
+        free(atual);
+      }
+      qtd_clusters++;
+    }
+  }
+
+  return qtd_clusters;
+}
+
+
+int marcar_cor(int cor){
+  return -1*cor;
+}
+/*void preenche_vizinho(cluster c, mapa m){
+
+	posicao* atual = malloc(sizeof(posicao));
+	atual->lin = c->pos.lin;
+	atual->col = c->pos.col;
+
+	enfileira(atual, proximas_pos);
+	int cor = m->mapa[atual->lin][atual->col];
+  int cor_marcada = marcar_cor(m->mapa[atual->lin][atual->col]);
+	m->mapa[atual->lin][atual->col] = cor_marcada;
+
+	printf("Cluster: %i,%i\n", atual->lin, atual->col);
+	while(atual = desenfileira(proximas_pos)){
+		printf("atual: %i,%i\n", atual->lin, atual->col);
+
+
+		//vizinho esquerda
+		if(atual->col != 0){
 			
-			posicao* atual = malloc(sizeof(posicao));
-			atual->lin = i;
-			atual->col = j;
-			enfileira(atual, proximas_pos);
-			cor = m->mapa[atual->lin][atual->col];
-			m->mapa[atual->lin][atual->col] = -1;
+			if(m->mapa[atual->lin][atual->col-1] == cor){
+				//marca como já passado
+				m->mapa[atual->lin][atual->col-1] = cor_marcada;
+				posicao* viz_esq = malloc(sizeof(posicao));
+				viz_esq->lin = atual->lin;
+				viz_esq->col = atual->col-1;
+				enfileira(viz_esq, proximas_pos);
+			}else if(m->mapa[atual->lin][atual->col-1] != cor_marcada){
 
-			printf("Cluster: %i,%i\n", atual->lin, atual->col);
-			while(atual = desenfileira(proximas_pos)){
-				printf("atual: %i,%i\n", atual->lin, atual->col);
-
-
-				//vizinho esquerda
-				if(atual->col != 0){
-					
-					if(m->mapa[atual->lin][atual->col-1] == cor){
-						//marca como já passado
-						m->mapa[atual->lin][atual->col-1] = -1;
-						posicao* viz_esq = malloc(sizeof(posicao));
-						viz_esq->lin = atual->lin;
-						viz_esq->col = atual->col-1;
-						enfileira(viz_esq, proximas_pos);
-					}
-				}
-				//vizinho direita
-				if(atual->col != m->ncolunas -1){
-					if(m->mapa[atual->lin][atual->col+1] == cor){
-						m->mapa[atual->lin][atual->col+1] = -1;
-						posicao* viz_dir = malloc(sizeof(posicao));
-						viz_dir->lin = atual->lin;
-						viz_dir->col = atual->col+1;
-						enfileira(viz_dir, proximas_pos);
-					}
-				}
-				//vizinho baixo
-				if(atual->lin != m->nlinhas -1){
-					if(m->mapa[atual->lin+1][atual->col] == cor){
-						m->mapa[atual->lin+1][atual->col] = -1;
-						posicao* viz_baixo = malloc(sizeof(posicao));
-						viz_baixo->lin = atual->lin+1;
-						viz_baixo->col = atual->col;
-						enfileira(viz_baixo, proximas_pos);
-					}
-				}
-				//vizinho cima
-				if(atual->lin != 0){
-					if(m->mapa[atual->lin-1][atual->col] == cor){
-						m->mapa[atual->lin-1][atual->col] = -1;
-						posicao* viz_cima = malloc(sizeof(posicao));
-						viz_cima->lin = atual->lin-1;
-						viz_cima->col = atual->col;
-						enfileira(viz_cima, proximas_pos);
-					}
-				}
-				free(atual);
+      }
+		}
+		//vizinho direita
+		if(atual->col != m->ncolunas -1){
+			if(m->mapa[atual->lin][atual->col+1] == cor){
+				m->mapa[atual->lin][atual->col+1] = cor_marcada;
+				posicao* viz_dir = malloc(sizeof(posicao));
+				viz_dir->lin = atual->lin;
+				viz_dir->col = atual->col+1;
+				enfileira(viz_dir, proximas_pos);
 			}
 		}
+		//vizinho baixo
+		if(atual->lin != m->nlinhas -1){
+			if(m->mapa[atual->lin+1][atual->col] == cor){
+				m->mapa[atual->lin+1][atual->col] = cor_marcada;
+				posicao* viz_baixo = malloc(sizeof(posicao));
+				viz_baixo->lin = atual->lin+1;
+				viz_baixo->col = atual->col;
+				enfileira(viz_baixo, proximas_pos);
+			}
+		}
+		//vizinho cima
+		if(atual->lin != 0){
+			if(m->mapa[atual->lin-1][atual->col] == cor){
+				m->mapa[atual->lin-1][atual->col] = cor_marcada;
+				posicao* viz_cima = malloc(sizeof(posicao));
+				viz_cima->lin = atual->lin-1;
+				viz_cima->col = atual->col;
+				enfileira(viz_cima, proximas_pos);
+			}
+		}
+		free(atual);
 	}
 
-}
+}*/
 int main(int argc, char **argv) {
 	tmapa m, testa_passo;
 
