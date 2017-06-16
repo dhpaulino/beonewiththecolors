@@ -13,6 +13,9 @@ struct cluster{
 	int marcado;
 	posicao pos;
 	lista vizinhos;
+
+	struct cluster* pai;
+	int altura;
 	lista v_agm;
 };
 

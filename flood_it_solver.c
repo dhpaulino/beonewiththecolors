@@ -5,7 +5,6 @@
 #include "fila.h"
 #include "grafo.h"
 #include "lista.h"
-
 #define passei_fundo 6
 
 
@@ -320,21 +319,26 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
 
 }
 
-void marcar_agm(grafo g){
+cluster marcar_agm(grafo g){
 
   Fila f = constroi_fila();
   Fila marcados = constroi_fila();
+  cluster mais_distante = g->primeiro;
   cluster atual;
   g->primeiro->marcado = 1;
   enfileira(g->primeiro, f);
 
   while(atual = desenfileira(f)){
     enfileira(atual, marcados);
+    if(atual->altura > mais_distante->altura)
+      mais_distante = atual;
     no no_v = primeiro_no(atual->vizinhos);
     for(;no_v;no_v = proximo_no(no_v)){
       cluster cv = conteudo(no_v);
       if(!cv->marcado){
         cv->marcado = 1;
+        cv->pai = atual;
+        cv->altura = atual->altura+1;
         insere_lista(cv, atual->v_agm);
         enfileira(cv, f);
       }
@@ -342,6 +346,7 @@ void marcar_agm(grafo g){
   }
 
   desmarcar(marcados);
+  return mais_distante;
 }
 int main(int argc, char **argv) {
 	tmapa m;
@@ -359,7 +364,8 @@ int main(int argc, char **argv) {
   mostra_mapa(&m);
   //print_grafo(g);
 
-  marcar_agm(g);
+  cluster mais_distante = marcar_agm(g);
+
   print_agm(g);
 
 	return 0;

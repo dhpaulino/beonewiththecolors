@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "grafo.h"
-#include "fila.h"
 #define N_CORES 4
 
 
@@ -27,6 +26,7 @@ cluster constroi_cluster(int id, int cor,posicao pos){
 	c->vizinhos = constroi_lista();
 	c->v_agm = constroi_lista();
 	c->marcado = 0;
+	c->altura = 0;
 
 	/*if(!g->primeiro){
 		g->primeiro = c;
@@ -116,7 +116,7 @@ void print_agm(grafo g){
 		cluster v;	
 		for(;no_v; no_v = proximo_no(no_v)){
 			v = conteudo(no_v); 
-			fprintf(f, "\t\"id:%i cor:%i\" -- \"id:%i cor:%i\" \n",atual->id, atual->cor, v->id, v->cor);
+			fprintf(f, "\t\"id:%i cor:%i h:%i\" -- \"id:%i cor:%i h:%i\" \n",atual->id, atual->cor, atual->altura, v->id, v->cor, v->altura);
 			if(!v->marcado){
 				v->marcado = 1;
 				enfileira(v, fclusters);
