@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdbool.h>
-#include "fila.c"
+#include "fila.h"
 #include "grafo.h"
 #include "lista.h"
 
@@ -10,7 +10,7 @@
 
 
 
-#define N 2
+#define N 3
 
 typedef struct {
 	int nlinhas;
@@ -284,6 +284,7 @@ cluster encontrar_pelo_id(int id, Fila clusters){
     if(catual->id == id){
       return catual;
     }
+    ef = ef->proximo;
   }
   return NULL; 
 }
@@ -304,6 +305,7 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
   	enfileira(atual, proximas_pos);
   	int id = catual->id;
     int id_marcado = -1*id;
+    //catual->id = id_marcado;//deixa id positivo
 
   	m->mapa[atual->lin][atual->col] = id_marcado;
 
@@ -398,6 +400,8 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
   	}
   }
 
+  return g;
+
 }
 int main(int argc, char **argv) {
 	tmapa m, testa_passo;
@@ -423,6 +427,7 @@ int main(int argc, char **argv) {
   printf("OBTEM GRAFO\n");
   grafo g  = obtem_grafo(&m, fclusters);
   mostra_mapa(&m);
+  print_grafo(g);
 
 	return 0;
 }
