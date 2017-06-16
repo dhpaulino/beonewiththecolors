@@ -69,10 +69,11 @@ void print_grafo(grafo g){
 		cluster v;	
 		for(;no_v; no_v = proximo_no(no_v)){
 			v = conteudo(no_v); 
+			fprintf(f, "\t\"id:%i cor:%i\" -- \"id:%i cor:%i\" \n",atual->id, atual->cor, v->id, v->cor);
 			if(!v->marcado){
 				v->marcado = 1;
 				enfileira(v, fclusters);
-				fprintf(f, "\t\"id:%i cor:%i\" -- \"id:%i cor:%i\" \n",atual->id, atual->cor, v->id, v->cor);
+				
 			}
 		}
 		

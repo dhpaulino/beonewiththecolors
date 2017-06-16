@@ -277,7 +277,7 @@ Fila detecta_clusters(tmapa* m){
 
 
 
-cluster encontrar_pelo_id(int id, Fila clusters){
+cluster encontrar_pelo_id_fila(int id, Fila clusters){
   ElementoFila ef = clusters->frente;
   while(ef){
     cluster catual = (cluster)ef->conteudo;
@@ -285,6 +285,17 @@ cluster encontrar_pelo_id(int id, Fila clusters){
       return catual;
     }
     ef = ef->proximo;
+  }
+  return NULL; 
+}
+cluster encontrar_pelo_id_lista(int id, lista clusters){
+  no n = primeiro_no(clusters);
+  while(n){
+    cluster catual = (cluster)conteudo(n);
+    if(catual->id == id){
+      return catual;
+    }
+    n = proximo_no(n);
   }
   return NULL; 
 }
@@ -311,8 +322,9 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
 
   	//printf("Cluster: %i,%i\n", atual->lin, atual->col);
   	while(atual = desenfileira(proximas_pos)){
-  		//printf("atual: %i,%i\n", atual->lin, atual->col);
+  		//printf("\natual: %i,%i\n", atual->lin, atual->col);
 
+      //mostra_mapa(m);
   		//vizinho esquerda
   		if(atual->col != 0){
   			
@@ -326,10 +338,10 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
   				enfileira(viz_esq, proximas_pos);
   			}else if(id_vizinho != id_marcado){
           
-          cluster cvizinho = encontrar_pelo_id(id_vizinho, fclusters);
-
+          cluster cvizinho = encontrar_pelo_id_lista(id_vizinho, catual->vizinhos);
           //não foi processado
-          if(cvizinho){
+          if(!cvizinho){
+            cvizinho = encontrar_pelo_id_fila(id_vizinho, fclusters);
             insere_lista(cvizinho, catual->vizinhos);
             insere_lista(catual, cvizinho->vizinhos);
           }
@@ -347,12 +359,18 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
   				enfileira(viz_dir, proximas_pos);
   			}else if(id_vizinho != id_marcado){
           
-          cluster cvizinho = encontrar_pelo_id(id_vizinho, fclusters);
+          cluster cvizinho = encontrar_pelo_id_lista(id_vizinho, catual->vizinhos);
 
           //não foi processado
-          if(cvizinho){
+          if(!cvizinho){
+            cvizinho = encontrar_pelo_id_fila(id_vizinho, fclusters);
             insere_lista(cvizinho, catual->vizinhos);
             insere_lista(catual, cvizinho->vizinhos);
+
+            no n = primeiro_no(catual->vizinhos);
+            for(;n;n=proximo_no(n)){
+              cluster c = conteudo(n);
+            }
           }
         }
   		}
@@ -367,10 +385,12 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
   				enfileira(viz_baixo, proximas_pos);
   			}else if(id_vizinho != id_marcado){
           
-          cluster cvizinho = encontrar_pelo_id(id_vizinho, fclusters);
+          cluster cvizinho = encontrar_pelo_id_lista(id_vizinho, catual->vizinhos);
 
           //não foi processado
-          if(cvizinho){
+          if(!cvizinho){
+            cvizinho = encontrar_pelo_id_fila(id_vizinho, fclusters);
+
             insere_lista(cvizinho, catual->vizinhos);
             insere_lista(catual, cvizinho->vizinhos);
           }
@@ -387,10 +407,12 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
   				enfileira(viz_cima, proximas_pos);
   			}else if(id_vizinho != id_marcado){
           
-          cluster cvizinho = encontrar_pelo_id(id_vizinho, fclusters);
+          cluster cvizinho = encontrar_pelo_id_lista(id_vizinho, catual->vizinhos);
 
           //não foi processado
-          if(cvizinho){
+          if(!cvizinho){
+            cvizinho = encontrar_pelo_id_fila(id_vizinho, fclusters);
+
             insere_lista(cvizinho, catual->vizinhos);
             insere_lista(catual, cvizinho->vizinhos);
           }
@@ -398,27 +420,21 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
   		}
   		free(atual);
   	}
+    catual->id = id_marcado;
   }
 
   return g;
 
 }
 int main(int argc, char **argv) {
-	tmapa m, testa_passo;
+	tmapa m;
+
+  carrega_mapa(&m);
 
 
-	m.nlinhas = N;
-	m.ncolunas = N;
-	m.ncores = 4;
-
-	testa_passo.nlinhas = N;
-	testa_passo.ncolunas = N;
-	testa_passo.ncores = N;
+	
 
 
-	int cor, index_passos, passos[m.nlinhas * m.ncolunas];
-
-	gera_mapa(&m, -1);
 	//mostra_mapa(&m);
 	mostra_mapa_cor(&m);
 	Fila fclusters = detecta_clusters(&m);
