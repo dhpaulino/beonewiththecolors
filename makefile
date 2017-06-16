@@ -44,7 +44,8 @@ all : flood_it_solver
 
 flood_it_solver : flood_it_solver.o grafo.o lista.o fila.o
 	$(CC) $(CFLAGS) -o $@ $^ 
-
+gerador: gerador.c
+	$(CC) $(CFLAGS) -o $@ $^
 #------------------------------------------------------------------------------
 clean :
 	$(RM) flood_it_solver *.o 
