@@ -25,6 +25,7 @@ cluster constroi_cluster(int id, int cor,posicao pos){
 	c->cor = cor;
 	c->pos = pos;
 	c->vizinhos = constroi_lista();
+	c->v_agm = constroi_lista();
 	c->marcado = 0;
 
 	/*if(!g->primeiro){
@@ -89,4 +90,59 @@ void print_grafo(grafo g){
 	destroi_fila(marcados);
 
 	fclose(f);
+}
+
+
+void print_agm(grafo g){
+
+	FILE *f = fopen("out_agm_grafo.dot", "w");
+	if (f == NULL)
+	{
+		printf("Error opening file!\n");
+		exit(1);
+	}
+
+	Fila fclusters = constroi_fila();
+	Fila marcados = constroi_fila();
+	g->primeiro->marcado = 1;
+	enfileira(g->primeiro, fclusters);
+	cluster atual;
+
+	fprintf(f, "strict graph \"g\" {\n");
+	while(atual  = desenfileira(fclusters)){
+		enfileira(atual, marcados);
+
+		no no_v = primeiro_no(atual->v_agm);
+		cluster v;	
+		for(;no_v; no_v = proximo_no(no_v)){
+			v = conteudo(no_v); 
+			fprintf(f, "\t\"id:%i cor:%i\" -- \"id:%i cor:%i\" \n",atual->id, atual->cor, v->id, v->cor);
+			if(!v->marcado){
+				v->marcado = 1;
+				enfileira(v, fclusters);
+				
+			}
+		}
+		
+	}
+
+	fprintf(f, "}\n");
+
+	while(atual = desenfileira(marcados)){
+		atual->marcado = 0;
+	}
+
+	destroi_fila(fclusters);
+	destroi_fila(marcados);
+
+	fclose(f);
+}
+
+void desmarcar(Fila f){
+
+	cluster atual;
+	while(atual = desenfileira(f)){
+		atual->marcado = 0;
+	}
+
 }

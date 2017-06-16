@@ -1,4 +1,6 @@
 #include "lista.h"
+#include "fila.h"
+
 
 typedef struct posicao{
 	unsigned int lin, col;
@@ -11,6 +13,7 @@ struct cluster{
 	int marcado;
 	posicao pos;
 	lista vizinhos;
+	lista v_agm;
 };
 
 typedef struct cluster* cluster;
@@ -28,3 +31,5 @@ void remover_cluster(cluster c);
 cluster constroi_cluster(int cor, int id,posicao pos);
 grafo constroi_grafo();
 void print_grafo(grafo g);
+void print_agm(grafo g);
+void desmarcar(Fila f);
