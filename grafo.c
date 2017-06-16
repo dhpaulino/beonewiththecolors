@@ -14,19 +14,20 @@ grafo constroi_grafo(){
 	return g;
 }
 
-cluster constroi_cluster(int cor,posicao pos, grafo g){
+cluster constroi_cluster(int id, int cor,posicao pos){
 	cluster c = malloc(sizeof(struct cluster));
 	if(!c)
 		return NULL;
 	c->tamanho = 0;
+	c->id = id;
 	c->cor = cor;
 	c->pos = pos;
 	c->vizinhos = constroi_lista();
 
-	if(!g->primeiro){
+	/*if(!g->primeiro){
 		g->primeiro = c;
 	}
-	g->tamanho++;
+	g->tamanho++;*/
 	return c;
 }
 

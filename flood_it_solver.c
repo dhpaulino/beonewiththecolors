@@ -4,12 +4,13 @@
 #include <stdbool.h>
 #include "fila.c"
 #include "grafo.h"
+#include "lista.h"
 
 #define passei_fundo 6
 
 
 
-#define N 4
+#define N 2
 
 typedef struct {
 	int nlinhas;
@@ -71,7 +72,6 @@ void mostra_mapa(tmapa *m) {
 		printf("\n");
   }
 }
-
 void mostra_mapa_cor(tmapa *m) {
 	int i, j;
 	char* cor_ansi[] = { "\x1b[0m",
@@ -193,15 +193,17 @@ int escolha_gulosa_por_heuristica(tmapa *m, int fundo) {
 	return escolha;
 }
 
-int detecta_clusters(tmapa* m){
+Fila detecta_clusters(tmapa* m){
 
   Fila proximas_pos = constroi_fila();
+  Fila clusters = constroi_fila();
+
   int cor;
   int qtd_clusters = 0;
   //percorre todas as posições da matriz, ignorando aquelas que estão marcadas com -1
   for(int i=0;i<m->nlinhas;++i){
     for(int j=0;j<m->ncolunas;++j){
-      if(m->mapa[i][j] <=0)//tem id
+      if(m->mapa[i][j] < 0)//tem id
         continue;
       
       posicao* atual = malloc(sizeof(posicao));
@@ -209,12 +211,18 @@ int detecta_clusters(tmapa* m){
       atual->col = j;
       enfileira(atual, proximas_pos);
       cor = m->mapa[atual->lin][atual->col];
-      m->mapa[atual->lin][atual->col] = -1;
-      int id = -1*qtd_clusters;
 
-      printf("Cluster: %i,%i  cor:%i\n", atual->lin, atual->col, cor);
+      qtd_clusters++;// não quero id == 0
+      int id = -1*qtd_clusters;
+      m->mapa[atual->lin][atual->col] = id;
+
+
+      cluster catual = constroi_cluster(id, cor, *atual);
+      enfileira(catual, clusters);
+
+      //printf("Cluster: %i,%i  cor:%i\n", atual->lin, atual->col, cor);
       while(atual = desenfileira(proximas_pos)){
-        printf("atual: %i,%i\n", atual->lin, atual->col);
+        //printf("atual: %i,%i\n", atual->lin, atual->col);
 
 
         //vizinho esquerda
@@ -261,81 +269,136 @@ int detecta_clusters(tmapa* m){
         }
         free(atual);
       }
-      qtd_clusters++;
     }
   }
 
-  return qtd_clusters;
+  return clusters;
 }
 
 
-int marcar_cor(int cor){
-  return -1*cor;
+
+cluster encontrar_pelo_id(int id, Fila clusters){
+  ElementoFila ef = clusters->frente;
+  while(ef){
+    cluster catual = (cluster)ef->conteudo;
+    if(catual->id == id){
+      return catual;
+    }
+  }
+  return NULL; 
 }
-/*void preenche_vizinho(cluster c, mapa m){
+grafo obtem_grafo(tmapa* m, Fila fclusters){
 
-	posicao* atual = malloc(sizeof(posicao));
-	atual->lin = c->pos.lin;
-	atual->col = c->pos.col;
-
-	enfileira(atual, proximas_pos);
-	int cor = m->mapa[atual->lin][atual->col];
-  int cor_marcada = marcar_cor(m->mapa[atual->lin][atual->col]);
-	m->mapa[atual->lin][atual->col] = cor_marcada;
-
-	printf("Cluster: %i,%i\n", atual->lin, atual->col);
-	while(atual = desenfileira(proximas_pos)){
-		printf("atual: %i,%i\n", atual->lin, atual->col);
+  Fila proximas_pos = constroi_fila();
+  grafo g = constroi_grafo();
+  g->primeiro = (cluster)fclusters->frente->conteudo;
+  cluster catual;
+  while(catual = desenfileira(fclusters)){
 
 
-		//vizinho esquerda
-		if(atual->col != 0){
-			
-			if(m->mapa[atual->lin][atual->col-1] == cor){
-				//marca como já passado
-				m->mapa[atual->lin][atual->col-1] = cor_marcada;
-				posicao* viz_esq = malloc(sizeof(posicao));
-				viz_esq->lin = atual->lin;
-				viz_esq->col = atual->col-1;
-				enfileira(viz_esq, proximas_pos);
-			}else if(m->mapa[atual->lin][atual->col-1] != cor_marcada){
+  	posicao* atual = malloc(sizeof(posicao));
+  	atual->lin = catual->pos.lin;
+  	atual->col = catual->pos.col;
 
-      }
-		}
-		//vizinho direita
-		if(atual->col != m->ncolunas -1){
-			if(m->mapa[atual->lin][atual->col+1] == cor){
-				m->mapa[atual->lin][atual->col+1] = cor_marcada;
-				posicao* viz_dir = malloc(sizeof(posicao));
-				viz_dir->lin = atual->lin;
-				viz_dir->col = atual->col+1;
-				enfileira(viz_dir, proximas_pos);
-			}
-		}
-		//vizinho baixo
-		if(atual->lin != m->nlinhas -1){
-			if(m->mapa[atual->lin+1][atual->col] == cor){
-				m->mapa[atual->lin+1][atual->col] = cor_marcada;
-				posicao* viz_baixo = malloc(sizeof(posicao));
-				viz_baixo->lin = atual->lin+1;
-				viz_baixo->col = atual->col;
-				enfileira(viz_baixo, proximas_pos);
-			}
-		}
-		//vizinho cima
-		if(atual->lin != 0){
-			if(m->mapa[atual->lin-1][atual->col] == cor){
-				m->mapa[atual->lin-1][atual->col] = cor_marcada;
-				posicao* viz_cima = malloc(sizeof(posicao));
-				viz_cima->lin = atual->lin-1;
-				viz_cima->col = atual->col;
-				enfileira(viz_cima, proximas_pos);
-			}
-		}
-		free(atual);
-	}
 
-}*/
+  	enfileira(atual, proximas_pos);
+  	int id = catual->id;
+    int id_marcado = -1*id;
+
+  	m->mapa[atual->lin][atual->col] = id_marcado;
+
+  	//printf("Cluster: %i,%i\n", atual->lin, atual->col);
+  	while(atual = desenfileira(proximas_pos)){
+  		//printf("atual: %i,%i\n", atual->lin, atual->col);
+
+  		//vizinho esquerda
+  		if(atual->col != 0){
+  			
+        int id_vizinho = m->mapa[atual->lin][atual->col-1];
+  			if(id_vizinho == id){
+  				//marca como já passado
+  				m->mapa[atual->lin][atual->col-1] = id_marcado;
+  				posicao* viz_esq = malloc(sizeof(posicao));
+  				viz_esq->lin = atual->lin;
+  				viz_esq->col = atual->col-1;
+  				enfileira(viz_esq, proximas_pos);
+  			}else if(id_vizinho != id_marcado){
+          
+          cluster cvizinho = encontrar_pelo_id(id_vizinho, fclusters);
+
+          //não foi processado
+          if(cvizinho){
+            insere_lista(cvizinho, catual->vizinhos);
+            insere_lista(catual, cvizinho->vizinhos);
+          }
+          
+        }
+  		}
+  		//vizinho direita
+  		if(atual->col != m->ncolunas -1){
+         int id_vizinho = m->mapa[atual->lin][atual->col+1];
+  			if(id_vizinho == id){
+  				m->mapa[atual->lin][atual->col+1] = id_marcado;
+  				posicao* viz_dir = malloc(sizeof(posicao));
+  				viz_dir->lin = atual->lin;
+  				viz_dir->col = atual->col+1;
+  				enfileira(viz_dir, proximas_pos);
+  			}else if(id_vizinho != id_marcado){
+          
+          cluster cvizinho = encontrar_pelo_id(id_vizinho, fclusters);
+
+          //não foi processado
+          if(cvizinho){
+            insere_lista(cvizinho, catual->vizinhos);
+            insere_lista(catual, cvizinho->vizinhos);
+          }
+        }
+  		}
+  		//vizinho baixo
+  		if(atual->lin != m->nlinhas -1){
+         int id_vizinho = m->mapa[atual->lin+1][atual->col];
+  			if(id_vizinho == id){
+  				m->mapa[atual->lin+1][atual->col] = id_marcado;
+  				posicao* viz_baixo = malloc(sizeof(posicao));
+  				viz_baixo->lin = atual->lin+1;
+  				viz_baixo->col = atual->col;
+  				enfileira(viz_baixo, proximas_pos);
+  			}else if(id_vizinho != id_marcado){
+          
+          cluster cvizinho = encontrar_pelo_id(id_vizinho, fclusters);
+
+          //não foi processado
+          if(cvizinho){
+            insere_lista(cvizinho, catual->vizinhos);
+            insere_lista(catual, cvizinho->vizinhos);
+          }
+        }
+  		}
+  		//vizinho cima
+  		if(atual->lin != 0){
+         int id_vizinho = m->mapa[atual->lin-1][atual->col];
+  			if(id_vizinho == id){
+  				m->mapa[atual->lin-1][atual->col] = id_marcado;
+  				posicao* viz_cima = malloc(sizeof(posicao));
+  				viz_cima->lin = atual->lin-1;
+  				viz_cima->col = atual->col;
+  				enfileira(viz_cima, proximas_pos);
+  			}else if(id_vizinho != id_marcado){
+          
+          cluster cvizinho = encontrar_pelo_id(id_vizinho, fclusters);
+
+          //não foi processado
+          if(cvizinho){
+            insere_lista(cvizinho, catual->vizinhos);
+            insere_lista(catual, cvizinho->vizinhos);
+          }
+        }
+  		}
+  		free(atual);
+  	}
+  }
+
+}
 int main(int argc, char **argv) {
 	tmapa m, testa_passo;
 
@@ -354,7 +417,12 @@ int main(int argc, char **argv) {
 	gera_mapa(&m, -1);
 	//mostra_mapa(&m);
 	mostra_mapa_cor(&m);
-	detecta_clusters(&m);
+	Fila fclusters = detecta_clusters(&m);
+
+  mostra_mapa(&m);
+  printf("OBTEM GRAFO\n");
+  grafo g  = obtem_grafo(&m, fclusters);
+  mostra_mapa(&m);
 
 	return 0;
 }

@@ -6,6 +6,7 @@ typedef struct posicao{
 
 struct cluster{
 	int cor;
+	int id;
 	int tamanho;
 	posicao pos;
 	lista vizinhos;
@@ -23,5 +24,5 @@ typedef struct grafo* grafo;
 
 
 void remover_cluster(cluster c);
-cluster constroi_cluster(int cor,posicao pos,grafo g);
+cluster constroi_cluster(int cor, int id,posicao pos);
 grafo constroi_grafo();
