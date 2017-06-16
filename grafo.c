@@ -48,13 +48,20 @@ void remover_cluster(cluster c){
 
 void print_grafo(grafo g){
 
+	FILE *f = fopen("out_grafo.dot", "w");
+	if (f == NULL)
+	{
+		printf("Error opening file!\n");
+		exit(1);
+	}
+
 	Fila fclusters = constroi_fila();
 	Fila marcados = constroi_fila();
 	g->primeiro->marcado = 1;
 	enfileira(g->primeiro, fclusters);
 	cluster atual;
 
-	printf("strict graph \"g\" {\n");
+	fprintf(f, "strict graph \"g\" {\n");
 	while(atual  = desenfileira(fclusters)){
 		enfileira(atual, marcados);
 
@@ -65,13 +72,13 @@ void print_grafo(grafo g){
 			if(!v->marcado){
 				v->marcado = 1;
 				enfileira(v, fclusters);
-				printf("id:%i,cor:%i -- id:%i,cor:%i \n",atual->id, atual->cor, v->id, v->cor);
+				fprintf(f, "\t\"id:%i cor:%i\" -- \"id:%i cor:%i\" \n",atual->id, atual->cor, v->id, v->cor);
 			}
 		}
 		
 	}
 
-	printf("}");
+	fprintf(f, "}\n");
 
 	while(atual = desenfileira(marcados)){
 		atual->marcado = 0;
@@ -79,4 +86,6 @@ void print_grafo(grafo g){
 
 	destroi_fila(fclusters);
 	destroi_fila(marcados);
+
+	fclose(f);
 }

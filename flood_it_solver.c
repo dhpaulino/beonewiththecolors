@@ -409,7 +409,7 @@ int main(int argc, char **argv) {
 
 	m.nlinhas = N;
 	m.ncolunas = N;
-	m.ncores = 2;
+	m.ncores = 4;
 
 	testa_passo.nlinhas = N;
 	testa_passo.ncolunas = N;
