@@ -13,6 +13,6 @@ N_MAPAS=$4
 
 i=0;
 while [ $i -lt $N_MAPAS ]; do
-	./gerador $N_LINHAS $N_COLUNAS $N_CORES > inputs/"$N_LINHAS"_"$N_COLUNAS"_"$N_CORES"_"$i".in;
+	fabiano/geramapa $N_LINHAS $N_COLUNAS $N_CORES $RANDOM > inputs/"$N_LINHAS"_"$N_COLUNAS"_"$N_CORES"_"$i".in;
 	let i=$i+1;
 done
