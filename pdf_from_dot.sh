@@ -1,5 +1,7 @@
 #!/bin/bash
 
-of=$(echo $1 | cut -d'.' -f1)
-#echo "$of.pdf"
-dot -Tpdf $1 -o "$of.pdf"
+normal="out_grafo"
+agm="out_agm_grafo"
+
+dot -Tpdf "$normal".dot -o "$normal".pdf
+dot -Tpdf "$agm".dot -o "$agm".pdf

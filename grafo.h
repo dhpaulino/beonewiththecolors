@@ -16,6 +16,7 @@ struct cluster{
 
 	struct cluster* pai;
 	int altura;
+	int maior_dist_folha;
 	lista v_agm;
 };
 

@@ -319,6 +319,17 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
 
 }
 
+void mudar_dist_folha(cluster c){
+  int dist = 0;
+  while(c){ 
+    if(dist > c->maior_dist_folha){
+      c->maior_dist_folha = dist;
+    }
+    dist++;
+    c = c->pai;
+  }
+
+}
 cluster marcar_agm(grafo g){
 
   Fila f = constroi_fila();
@@ -332,16 +343,21 @@ cluster marcar_agm(grafo g){
     enfileira(atual, marcados);
     if(atual->altura > mais_distante->altura)
       mais_distante = atual;
+    int qtd_filhos=0;
     no no_v = primeiro_no(atual->vizinhos);
     for(;no_v;no_v = proximo_no(no_v)){
       cluster cv = conteudo(no_v);
       if(!cv->marcado){
+        qtd_filhos++;
         cv->marcado = 1;
         cv->pai = atual;
         cv->altura = atual->altura+1;
         insere_lista(cv, atual->v_agm);
         enfileira(cv, f);
       }
+    }
+    if(qtd_filhos == 0){//folha
+      mudar_dist_folha(atual);
     }
   }
 
@@ -362,7 +378,7 @@ int main(int argc, char **argv) {
   printf("OBTEM GRAFO\n");
   grafo g  = obtem_grafo(&m, fclusters);
   mostra_mapa(&m);
-  //print_grafo(g);
+  print_grafo(g);
 
   cluster mais_distante = marcar_agm(g);
 
