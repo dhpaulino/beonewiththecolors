@@ -7,7 +7,7 @@
 struct no {
 
   void *conteudo;
-  no proximo;
+  no proximo,  anterior;
 };
 //---------------------------------------------------------------------------
 // lista encadeada
@@ -16,7 +16,7 @@ struct lista {
   
   unsigned int tamanho;
   int padding; // só pra evitar warning 
-  no primeiro;
+  no primeiro, ultimo;
 };
 
 int remove_pelo_conteudo(void* cont, struct lista* l){
@@ -28,6 +28,9 @@ for(;no_atual; no_atual = proximo_no(no_atual), cont_atual = conteudo(no_atual))
       if(no_atual == l->primeiro){
         l->primeiro = no_atual->proximo;
       } 
+      if(no_atual == l->ultimo){
+        l->ultimo = no_atual->anterior;
+      }
       free(no_atual);
 
       return 1;
@@ -71,6 +74,7 @@ lista constroi_lista(void) {
     return NULL;
 
   l->primeiro = NULL;
+  l->ultimo = NULL;
   l->tamanho = 0;
 
   return l;
@@ -121,8 +125,15 @@ no insere_lista(void *conteudo, lista l) {
 
   novo->conteudo = conteudo;
   novo->proximo = primeiro_no(l);
-  ++l->tamanho;
+  novo->anterior = NULL;
   
+  if(l->tamanho == 0){
+    l->ultimo = novo;
+  }else{
+    novo->proximo->anterior = novo;
+  }
+
+  ++l->tamanho;
   return l->primeiro = novo;
 }
 
@@ -134,18 +145,19 @@ no insere_lista(void *conteudo, lista l) {
 
 int remove_no(struct lista *l, struct no *rno, int destroi(void *)) {
 	int r = 1;
-	if (l->primeiro == rno) {
-		l->primeiro = rno->proximo;
-		if (destroi != NULL) {
-			r = destroi(conteudo(rno));
-		}
-		free(rno);
-		l->tamanho--;
-		return r;
-	}
-	for (no n = primeiro_no(l); n->proximo; n = proximo_no(n)) {
-		if (n->proximo == rno) {
-			n->proximo = rno->proximo;
+
+	for (no n = primeiro_no(l); n; n = proximo_no(n)) {
+		if (n == rno) {
+      if (l->primeiro == rno) {
+        l->primeiro = rno->proximo;
+      }else{
+        n->anterior->proximo = rno->proximo;
+      }
+      if(l->ultimo == rno){
+        l->ultimo = rno->anterior;
+      }else{
+        rno->proximo->anterior = rno->anterior;
+      }
 			if (destroi != NULL) {
 				r = destroi(conteudo(rno));
 			}
