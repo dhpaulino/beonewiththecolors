@@ -39,7 +39,7 @@ CFLAGS  = -std=c99 -g
 .PHONY : all clean
 
 #------------------------------------------------------------------------------
-all : flood_it_solver
+all : flood_it_solver gerador
 
 
 flood_it_solver : flood_it_solver.o grafo.o lista.o fila.o
@@ -48,4 +48,4 @@ gerador: gerador.c
 	$(CC) $(CFLAGS) -o $@ $^
 #------------------------------------------------------------------------------
 clean :
-	$(RM) flood_it_solver *.o 
+	$(RM) flood_it_solver  gerador *.o 
