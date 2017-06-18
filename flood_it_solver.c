@@ -449,10 +449,11 @@ int main(int argc, char **argv) {
   print_grafo(g);
 
   cluster mais_distante = marcar_agm(g);
+  print_agm(g);
   Fila solucao = heuristica_mais_longe(g);
   print_solucao(solucao);
 
-  print_agm(g);
+ 
 
 	return 0;
 }

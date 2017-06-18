@@ -51,7 +51,7 @@ void remover_cluster(cluster c){
 
 void print_grafo(grafo g){
 
-	FILE *f = fopen("out_grafo.dot", "w");
+	FILE *f = fopen("inteiro_grafo.dot", "w");
 	if (f == NULL)
 	{
 		printf("Error opening file!\n");
@@ -97,7 +97,7 @@ void print_grafo(grafo g){
 
 void print_agm(grafo g){
 
-	FILE *f = fopen("out_agm_grafo.dot", "w");
+	FILE *f = fopen("agm_grafo.dot", "w");
 	if (f == NULL)
 	{
 		printf("Error opening file!\n");
