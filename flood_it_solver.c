@@ -1,3 +1,4 @@
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -114,6 +115,7 @@ Fila detecta_clusters(tmapa* m){
 
       //printf("Cluster: %i,%i  cor:%i\n", atual->lin, atual->col, cor);
       while(atual = desenfileira(proximas_pos)){
+        catual->tamanho++;
         //printf("atual: %i,%i\n", atual->lin, atual->col);
 
 
@@ -405,7 +407,14 @@ Fila heuristica_mais_longe(grafo g){
       
       //printf("pc:%i id:%i\n", cv->maior_dist_folha, cv->id);
       if(cv->maior_dist_folha == raiz->maior_dist_folha-1){
-        prox_cluster = cv;
+
+        if(prox_cluster){
+          if(cv->tamanho > prox_cluster->tamanho){
+            prox_cluster = cv;
+          }
+        }else{
+          prox_cluster = cv;
+        }
         //printf("entrou\n");
       }
     }
