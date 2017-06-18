@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]
+if [ $# -ne 2 ]
   then
-    echo "Chame corretamente: $0 NOME_HEURISTICA"
+    echo "Chame corretamente: $0 EXECUTAVEL NOME_HEURISTICA"
     exit -1
 fi
 
-nome=$1
+nome=$2
 MY_PATH="`dirname \"$0\"`"
 MY_PATH="`( cd \"$MY_PATH\" && pwd )`"
 raiz=$(dirname "$MY_PATH")
@@ -14,7 +14,7 @@ input_dir="$raiz""/inputs"
 solucoes_dir="$raiz/solucoes"
 dir_heuristica="$solucoes_dir/$nome"
 tempo_heuristica="$dir_heuristica/tempo"
-exe_path="$raiz/flood_it_solver"
+exe_path="$1"
 
 
 mkdir -p "$tempo_heuristica" 2> /dev/null
@@ -26,7 +26,7 @@ do
 
 	echo "$mapa_name"
 
-	{ time "$exe_path" < "$mapa_path" > "$dir_heuristica/$mapa_name.sol"; } 2> "$tempo_heuristica/$mapa_name.time"
+	{ time "./$exe_path" < "$mapa_path" > "$dir_heuristica/$mapa_name.sol"; } 2> "$tempo_heuristica/$mapa_name.time"
 	
 	
 done

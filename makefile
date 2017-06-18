@@ -39,11 +39,15 @@ CFLAGS  = -std=c99 -g
 .PHONY : all clean
 
 #------------------------------------------------------------------------------
-all : flood_it_solver 
+all : flood_it_solver maior_cluster
 
 
 flood_it_solver : flood_it_solver.o grafo.o lista.o fila.o
 	$(CC) $(CFLAGS) -o $@ $^ 
+
+maior_cluster : maior_cluster.o grafo.o lista.o fila.o
+	$(CC) $(CFLAGS) -o $@ $^ 
+
 #------------------------------------------------------------------------------
 clean :
-	$(RM) -rf flood_it_solver *.o *.pdf
+	$(RM) -rf flood_it_solver maior_cluster *.o *.pdf 
