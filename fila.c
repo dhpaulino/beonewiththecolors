@@ -7,6 +7,7 @@ Fila constroi_fila(void){
   	return NULL;
   fila->frente = NULL;
   fila->final = NULL;
+  fila->tamanho = 0;
   return fila;
 }
 
@@ -31,6 +32,7 @@ int enfileira(void* conteudo, Fila fila){
     ef->anterior = fila->final;
     fila->final = ef;
   }
+  fila->tamanho++;
   return 1;
   
 }
@@ -48,6 +50,7 @@ void* desenfileira(Fila fila){
     fila->final=NULL;//FRENTE == FILA->FINAL
   }
   free(frente);
+  fila->tamanho--;
   return conteudo;
 }
 
@@ -104,6 +107,7 @@ void adicionar_antes(ElementoFila elemento,ElementoFila pivo,Fila fila){
     pivo->anterior->proximo = elemento;
   }
   pivo->anterior = elemento;
+  fila->tamanho++;
 }
 
 void adicionar_depois(ElementoFila elemento,ElementoFila pivo,Fila fila){
@@ -120,4 +124,5 @@ void adicionar_depois(ElementoFila elemento,ElementoFila pivo,Fila fila){
     pivo->proximo->anterior = elemento;
 
   pivo->proximo=elemento;
+  fila->tamanho++;
 }

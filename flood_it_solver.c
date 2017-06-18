@@ -319,6 +319,10 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
 
 }
 
+
+
+
+
 void mudar_dist_folha(cluster c){
   int dist = 0;
   while(c){ 
@@ -364,6 +368,70 @@ cluster marcar_agm(grafo g){
   desmarcar(marcados);
   return mais_distante;
 }
+
+void mesclar(cluster raiz, int cor){
+    //no no_v = primeiro_no(raiz->vizinhos);
+  int nova_maior_distancia_folha = raiz->maior_dist_folha - 1;
+  no no_v = primeiro_no(raiz->v_agm);
+  for(;no_v;no_v = proximo_no(no_v)){
+    cluster cv = conteudo(no_v);
+    if(cv->cor == cor){
+    //  remove_no(raiz->vizinhos, no_v, NULL);
+      //remove_pelo_conteudo(cv, raiz->v_agm);
+      //printf("Removido %i\n", cv->id);
+      remove_no(raiz->v_agm, no_v, NULL);
+      //ARRUMAr
+      concatena_lista(raiz->v_agm, cv->v_agm);
+      //concatena_lista(raiz->vizinhos, cv->vizinhos);
+    }else{
+      if(cv->maior_dist_folha ==  raiz->maior_dist_folha - 1){
+          nova_maior_distancia_folha = cv->maior_dist_folha+1;
+      }
+    }
+  }
+  raiz->maior_dist_folha = nova_maior_distancia_folha;
+  raiz->cor = cor;
+}
+Fila heuristica_mais_longe(grafo g){
+  cluster raiz = g->primeiro;
+
+  Fila solucao = constroi_fila();
+  while(raiz->maior_dist_folha > 0){
+    //printf("==MINHA MAIOR ALTURA: %i==\n", raiz->maior_dist_folha);
+    no no_v = primeiro_no(raiz->v_agm);
+    cluster prox_cluster = NULL;
+    for(;no_v;no_v = proximo_no(no_v)){
+      cluster cv = conteudo(no_v);
+      
+      //printf("pc:%i id:%i\n", cv->maior_dist_folha, cv->id);
+      if(cv->maior_dist_folha == raiz->maior_dist_folha-1){
+        prox_cluster = cv;
+        //printf("entrou\n");
+      }
+    }
+    int* cor_solucao = malloc(sizeof(int));
+    *cor_solucao = prox_cluster->cor;
+    enfileira(cor_solucao, solucao);
+    //printf("PROX_COR:%i id:%i\n\n", prox_cluster->cor, prox_cluster->id);
+    mesclar(raiz, prox_cluster->cor);
+
+
+
+  }
+
+  return solucao;
+}
+void print_solucao(Fila solucao){
+  fprintf(stdout, "%i\n",solucao->tamanho);
+  int* cor;
+  cor = (int*)desenfileira(solucao);
+  if(cor)
+    fprintf(stdout, "%i", *cor);
+  while(cor = (int*)desenfileira(solucao)){
+    fprintf(stdout, " %i", *cor);
+  }
+  printf("\n");
+}
 int main(int argc, char **argv) {
 	tmapa m;
 
@@ -371,16 +439,18 @@ int main(int argc, char **argv) {
 
 
 	//mostra_mapa(&m);
-	mostra_mapa_cor(&m);
+	//mostra_mapa_cor(&m);
 	Fila fclusters = detecta_clusters(&m);
 
-  mostra_mapa(&m);
-  printf("OBTEM GRAFO\n");
+  //mostra_mapa(&m);
+  //printf("OBTEM GRAFO\n");
   grafo g  = obtem_grafo(&m, fclusters);
-  mostra_mapa(&m);
+  //mostra_mapa(&m);
   print_grafo(g);
 
   cluster mais_distante = marcar_agm(g);
+  Fila solucao = heuristica_mais_longe(g);
+  print_solucao(solucao);
 
   print_agm(g);
 

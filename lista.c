@@ -23,7 +23,8 @@ int remove_pelo_conteudo(void* cont, struct lista* l){
   no no_atual = primeiro_no(l);
   void* cont_atual = conteudo(no_atual);
 
-for(;no_atual; no_atual = proximo_no(no_atual), cont_atual = conteudo(no_atual)){
+for(;no_atual; no_atual = proximo_no(no_atual)){
+   cont_atual = conteudo(no_atual);
     if(cont_atual == cont){
       if(no_atual == l->primeiro){
         l->primeiro = no_atual->proximo;
@@ -137,6 +138,26 @@ no insere_lista(void *conteudo, lista l) {
   return l->primeiro = novo;
 }
 
+
+int concatena_lista(struct lista *dest, struct lista* l){
+  
+  if(l->tamanho > 0){
+    no n = l->ultimo;
+    if(dest->primeiro){
+      dest->primeiro->anterior = n;
+      n->proximo = dest->primeiro;
+    }
+    dest->primeiro = l->primeiro;
+    if(dest->tamanho == 0){
+      dest->ultimo = n;
+    }
+  }
+
+  dest->tamanho += l->tamanho;
+
+  return 1;
+}
+
 //------------------------------------------------------------------------------
 // remove o no de endereço rno de l
 // se destroi != NULL, executa destroi(conteudo(rno)) 
@@ -168,3 +189,5 @@ int remove_no(struct lista *l, struct no *rno, int destroi(void *)) {
 	}
 	return 0;
 }
+
+

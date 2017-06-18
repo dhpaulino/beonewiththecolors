@@ -7,3 +7,5 @@
 *.out
 !fabiano/*
 .gdb_history
+*.pdf
+*.dot

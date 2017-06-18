@@ -10,15 +10,16 @@ typedef struct ElementoFila* ElementoFila;
 Elemento da fila, cujo o conteudo é void*
 **/
 struct ElementoFila{
-  void* conteudo;
-  ElementoFila proximo,anterior;
+	void* conteudo;
+	ElementoFila proximo,anterior;
 };
 
 /*
 fila duplamente encadeada
 */
 struct Fila{
-  ElementoFila frente,final;
+	int tamanho;
+	ElementoFila frente,final;
 };
 
 /**
