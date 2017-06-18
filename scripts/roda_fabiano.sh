@@ -22,14 +22,22 @@ do
 	mapa_name=$(echo "$mapa_name" | cut -d'.' -f1)
 
 	echo "$mapa_name"
-	echo "H1"
-	{ time "$h1_exe" < "$mapa_path" > "$h1_sol/$mapa_name.sol"; } 2> "$h1_sol/tempo/$mapa_name.time"
-	echo "H2"
-	{ time "$h2_exe" < "$mapa_path" > "$h2_sol/$mapa_name.sol"; } 2> "$h2_sol/tempo/$mapa_name.time"
-	echo "H4"
-	{ time "$h4_exe" < "$mapa_path" > "$h4_sol/$mapa_name.sol"; } 2> "$h4_sol/tempo/$mapa_name.time"
-	echo "H6"
-	{ time "$h6_exe" < "$mapa_path" > "$h6_sol/$mapa_name.sol"; } 2> "$h6_sol/tempo/$mapa_name.time"
 	
+	if [ ! -e "$h1_sol/$mapa_name.sol" ];then
+		echo "H1"
+		{ time "$h1_exe" < "$mapa_path" > "$h1_sol/$mapa_name.sol"; } 2> "$h1_sol/tempo/$mapa_name.time"
+	fi
+	if [ ! -e "$h2_sol/$mapa_name.sol" ];then
+		echo "H2"
+		{ time "$h2_exe" < "$mapa_path" > "$h2_sol/$mapa_name.sol"; } 2> "$h2_sol/tempo/$mapa_name.time"
+	fi
+	if [ ! -e "$h4_sol/$mapa_name.sol" ];then
+		echo "H4"
+		{ time "$h4_exe" < "$mapa_path" > "$h4_sol/$mapa_name.sol"; } 2> "$h4_sol/tempo/$mapa_name.time"
+	fi
+	if [ ! -e "$h6_sol/$mapa_name.sol" ];then
+		echo "H6"
+		{ time "$h6_exe" < "$mapa_path" > "$h6_sol/$mapa_name.sol"; } 2> "$h6_sol/tempo/$mapa_name.time"
+	fi
 	
 done

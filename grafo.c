@@ -72,7 +72,7 @@ void print_grafo(grafo g){
 		cluster v;	
 		for(;no_v; no_v = proximo_no(no_v)){
 			v = conteudo(no_v); 
-			fprintf(f, "\t\"id:%i cor:%i\" -- \"id:%i cor:%i\" \n",atual->id, atual->cor, v->id, v->cor);
+			fprintf(f, "\t\"id:%i cor:%i viz:%i\" -- \"id:%i cor:%i viz:%i\" \n",atual->id, atual->cor, tamanho_lista(atual->vizinhos), v->id, v->cor,tamanho_lista(v->vizinhos));
 			if(!v->marcado){
 				v->marcado = 1;
 				enfileira(v, fclusters);
@@ -118,7 +118,8 @@ void print_agm(grafo g){
 		cluster v;	
 		for(;no_v; no_v = proximo_no(no_v)){
 			v = conteudo(no_v); 
-			fprintf(f, "\t\"id:%i cor:%i h:%i df:%i\" -- \"id:%i cor:%i h:%i df:%i\" \n",atual->id, atual->cor, atual->altura, atual->maior_dist_folha, v->id, v->cor, v->altura, v->maior_dist_folha);
+			fprintf(f, "\t\"id:%i cor:%i tam:%i df:%i\" -- \"id:%i cor:%i tam:%i df:%i\" \n",atual->id, atual->cor, atual->tamanho, atual->maior_dist_folha,
+						 v->id, v->cor, v->tamanho, v->maior_dist_folha);
 			if(!v->marcado){
 				v->marcado = 1;
 				enfileira(v, fclusters);

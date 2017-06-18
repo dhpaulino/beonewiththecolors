@@ -21,20 +21,12 @@ struct lista {
 
 int remove_pelo_conteudo(void* cont, struct lista* l){
   no no_atual = primeiro_no(l);
-  void* cont_atual = conteudo(no_atual);
+  void* cont_atual;
 
 for(;no_atual; no_atual = proximo_no(no_atual)){
    cont_atual = conteudo(no_atual);
     if(cont_atual == cont){
-      if(no_atual == l->primeiro){
-        l->primeiro = no_atual->proximo;
-      } 
-      if(no_atual == l->ultimo){
-        l->ultimo = no_atual->anterior;
-      }
-      free(no_atual);
-
-      return 1;
+      return remove_no(l, no_atual, NULL);
     }
   }
   return 0;

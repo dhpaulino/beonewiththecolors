@@ -46,4 +46,4 @@ flood_it_solver : flood_it_solver.o grafo.o lista.o fila.o
 	$(CC) $(CFLAGS) -o $@ $^ 
 #------------------------------------------------------------------------------
 clean :
-	$(RM) -rf flood_it_solver *.o 
+	$(RM) -rf flood_it_solver *.o *.pdf

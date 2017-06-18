@@ -336,6 +336,10 @@ void mudar_dist_folha(cluster c){
   }
 
 }
+/*marcado 0 -> não processado
+          1 -> na fila
+          2 -> processado
+  */
 cluster marcar_agm(grafo g){
 
   Fila f = constroi_fila();
@@ -346,6 +350,7 @@ cluster marcar_agm(grafo g){
   enfileira(g->primeiro, f);
 
   while(atual = desenfileira(f)){
+    atual->marcado = 2;
     enfileira(atual, marcados);
     if(atual->altura > mais_distante->altura)
       mais_distante = atual;
@@ -353,13 +358,27 @@ cluster marcar_agm(grafo g){
     no no_v = primeiro_no(atual->vizinhos);
     for(;no_v;no_v = proximo_no(no_v)){
       cluster cv = conteudo(no_v);
-      if(!cv->marcado){
+      if(cv->marcado == 0){
         qtd_filhos++;
         cv->marcado = 1;
         cv->pai = atual;
         cv->altura = atual->altura+1;
         insere_lista(cv, atual->v_agm);
         enfileira(cv, f);
+      }else if(cv->marcado == 1){
+        //diminuir ifs
+        if(cv->pai->altura == atual->altura){
+          if(tamanho_lista(atual->vizinhos) > tamanho_lista(cv->pai->vizinhos)){
+            //printf("ATUAL:%i\tANTERIOR:%i\tFILHO:%i\n", atual->id, cv->pai->id, cv->id);
+            qtd_filhos++;
+            remove_pelo_conteudo(cv, cv->pai->v_agm);
+            if(tamanho_lista(cv->pai->v_agm) == 0){
+              mudar_dist_folha(cv->pai);
+            }
+            cv->pai = atual;
+            insere_lista(cv, atual->v_agm);
+          }
+        }
       }
     }
     if(qtd_filhos == 0){//folha
@@ -407,12 +426,14 @@ Fila heuristica_mais_longe(grafo g){
       
       //printf("pc:%i id:%i\n", cv->maior_dist_folha, cv->id);
       if(cv->maior_dist_folha == raiz->maior_dist_folha-1){
-
+        //printf("==--1\n");
         if(prox_cluster){
           if(cv->tamanho > prox_cluster->tamanho){
+            //printf("maior\n");
             prox_cluster = cv;
           }
         }else{
+          //printf("primeiro\n");
           prox_cluster = cv;
         }
         //printf("entrou\n");

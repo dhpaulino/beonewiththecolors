@@ -19,8 +19,15 @@ heuristicas=$(ls "$solucoes_dir")
 saida=""
 for h in $heuristicas
 do
-	passos=$(head -1 "$solucoes_dir/$h/$mapa.sol")
-	tempo=$(cat "$solucoes_dir/$h/tempo/$mapa.time" | grep real | cut -d'	' -f2)
+	if [  -e "$solucoes_dir/$h/$mapa.sol" ];then
+		passos=$(head -1 "$solucoes_dir/$h/$mapa.sol")
+		tempo=$(cat "$solucoes_dir/$h/tempo/$mapa.time" | grep real | cut -d'	' -f2)
+		
+	else
+		passos="NULL"
+		tempo="NULL"
+
+	fi
 	saida="$saida\n$h\t$passos\t$tempo"
 done
 echo "Ordenado por: NUM_PASSOS"
