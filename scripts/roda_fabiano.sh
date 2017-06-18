@@ -15,9 +15,12 @@ h2_sol="$solucoes_dir/h2"
 h4_sol="$solucoes_dir/h4"
 h6_sol="$solucoes_dir/h6"
 
-for mapa_path in $input_dir/*
+
+for mapa_name in $(ls $input_dir | sort -h)
 do
-	mapa_name=$(echo $mapa_path| rev | cut -d'/' -f1 | rev | cut -d'.' -f1)
+	mapa_path="$input_dir/$mapa_name"
+	mapa_name=$(echo "$mapa_name" | cut -d'.' -f1)
+
 	echo "$mapa_name"
 	echo "H1"
 	{ time "$h1_exe" < "$mapa_path" > "$h1_sol/$mapa_name.sol"; } 2> "$h1_sol/tempo/$mapa_name.time"
@@ -27,5 +30,6 @@ do
 	{ time "$h4_exe" < "$mapa_path" > "$h4_sol/$mapa_name.sol"; } 2> "$h4_sol/tempo/$mapa_name.time"
 	echo "H6"
 	{ time "$h6_exe" < "$mapa_path" > "$h6_sol/$mapa_name.sol"; } 2> "$h6_sol/tempo/$mapa_name.time"
-
+	
+	
 done
