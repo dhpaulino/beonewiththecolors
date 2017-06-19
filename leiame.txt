@@ -1,0 +1,9 @@
+Davisson Henrique Paulino   GRR20142054
+Henrique Colodetti Escanferla   GRR20135427
+ 
+ 
+A heurística utilizada foi a de chegar na posição mais
+ extrema do mapa, sendo está variável. Para tal, modelamos o mapa em um grafo de clusters(quadrados da mesma cor contínuos) e geramos uma árvore de caminhos mínimos com a raiz no cluster iniciado na posição “0,0”. Para determinar quem  é o pai de um cluster é comparado a quantidade de vizinhos dos candidatos, eles devem ser da mesma altura. 
+ 
+É decidido a próxima cor que será pintada no mapa de acordo com a maior distância dos filhos da raiz com relação a folha mais distante, o cluster que tiver a maior tem a sua cor escolhida(em caso de empate e pego o cluster de maior tamanho).   Estas distância são calculadas ao gerar a árvores de caminhos mínimos e recalculadas quando algum descendente de um  filho da raiz se torna filho da raiz.
+
