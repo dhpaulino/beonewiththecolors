@@ -427,6 +427,7 @@ void arruma_mais_distante(cluster pai, cluster filho){
 void tornar_vizinho_da_raiz(cluster raiz, lista vizinhos){
   no no_v = primeiro_no(vizinhos);
   cluster cv;
+  //printf("raiz:%i\n", raiz->desativado);
   for(;no_v; no_v = proximo_no(no_v)){
     cv = (cluster)conteudo(no_v);
     if(cv->desativado){
@@ -442,6 +443,8 @@ void tornar_vizinho_da_raiz(cluster raiz, lista vizinhos){
           arruma_mais_distante(cv->pai, cv);
           cv->pai = raiz;
           cv->altura--;
+        }else{
+          remove_no(vizinhos, no_v, NULL);
         }
       }
     }
@@ -459,7 +462,7 @@ void mesclar(cluster raiz, int cor){
       //remove_pelo_conteudo(cv, raiz->v_agm);
       //printf("Removido %i\n", cv->id);
       //TODO: desativar em todos os  vizinhos
-      //printf("Pintado:%i\n", cv->id);
+      //printf("\nPintado:%i\n", cv->id);
       cv->desativado = 1;
       remove_no(raiz->v_agm, no_v, NULL);
       //ARRUMAr
