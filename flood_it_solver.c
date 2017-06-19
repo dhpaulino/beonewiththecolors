@@ -477,7 +477,7 @@ Fila heuristica_mais_longe(grafo g){
   cluster raiz = g->primeiro;
 
   Fila solucao = constroi_fila();
-  while(raiz->maior_dist_folha > 0){
+  while(1){
     //printf("==MINHA MAIOR ALTURA: %i==\n", raiz->maior_dist_folha);
     no no_v = primeiro_no(raiz->v_agm);
     int maior_dist = 0;
@@ -500,6 +500,8 @@ Fila heuristica_mais_longe(grafo g){
       enfileira(cor_solucao, solucao);
       //printf("PROX_COR:%i id:%i\n\n", prox_cluster->cor, prox_cluster->id);
       mesclar(raiz, prox_cluster->cor);
+    }else{
+      break;
     }
 
   }
