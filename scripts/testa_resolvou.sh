@@ -22,8 +22,9 @@ do
 	sol="$dir_heuristica/$mapa_name.sol"
 	
 	cat "$mapa_path" "$sol"| "$raiz"/fabiano/verifica
-	filename=$(echo $mapa_path| rev | cut -d'/' -f1 | rev)
+	
 	resolveu=$?
+	filename=$(echo $mapa_path| rev | cut -d'/' -f1 | rev)
 	if [[ $resolveu != 0 ]];then
 		echo "Não resolveu:$filename";
 		#echo "Solução:$sol" 

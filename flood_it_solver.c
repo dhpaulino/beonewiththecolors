@@ -390,9 +390,67 @@ cluster marcar_agm(grafo g){
   return mais_distante;
 }
 
+
+void arruma_mais_distante(cluster pai, cluster filho){
+
+  if(!pai->desativado){
+    no no_v = primeiro_no(pai->v_agm);
+    int maior_dist = 0;
+    for(;no_v;no_v = proximo_no(no_v)){
+      cluster cv = conteudo(no_v);
+      if(cv == filho){
+        remove_no(pai->v_agm, no_v, NULL);        
+      }else{
+        if(cv->maior_dist_folha > maior_dist){
+          maior_dist = cv->maior_dist_folha;
+        }
+      }
+    }
+    pai->maior_dist_folha = maior_dist;
+
+    filho = pai;
+    pai = filho->pai;
+    for(;pai->pai;filho = pai, pai = filho->pai){
+
+      no_v = primeiro_no(pai->v_agm);
+      maior_dist = 0;
+      for(;no_v;no_v = proximo_no(no_v)){
+        cluster cv = conteudo(no_v);
+        if(cv->maior_dist_folha > maior_dist){
+          maior_dist = cv->maior_dist_folha;
+        }
+      }
+    }
+  }
+
+}
+void tornar_vizinho_da_raiz(cluster raiz, lista vizinhos){
+  no no_v = primeiro_no(vizinhos);
+  cluster cv;
+  for(;no_v; no_v = proximo_no(no_v)){
+    cv = (cluster)conteudo(no_v);
+    if(cv->desativado){
+      remove_no(vizinhos, no_v, NULL);
+    }else{
+      if(cv->pai == raiz){
+        remove_no(vizinhos, no_v, NULL);
+      }else{
+        //TODO: remover a relação com a raiz quando gera o grafo
+        if(cv != raiz){
+          //printf("PAI:%i CLUSTER:%i\n", cv->pai->id, cv->id);
+          //mudar_dist_folha(cv->pai);
+          arruma_mais_distante(cv->pai, cv);
+          cv->pai = raiz;
+          cv->altura--;
+        }
+      }
+    }
+  }
+  concatena_lista(raiz->v_agm, vizinhos);
+}
+
 void mesclar(cluster raiz, int cor){
     //no no_v = primeiro_no(raiz->vizinhos);
-  int nova_maior_distancia_folha = raiz->maior_dist_folha - 1;
   no no_v = primeiro_no(raiz->v_agm);
   for(;no_v;no_v = proximo_no(no_v)){
     cluster cv = conteudo(no_v);
@@ -400,17 +458,16 @@ void mesclar(cluster raiz, int cor){
     //  remove_no(raiz->vizinhos, no_v, NULL);
       //remove_pelo_conteudo(cv, raiz->v_agm);
       //printf("Removido %i\n", cv->id);
+      //TODO: desativar em todos os  vizinhos
+      //printf("Pintado:%i\n", cv->id);
+      cv->desativado = 1;
       remove_no(raiz->v_agm, no_v, NULL);
       //ARRUMAr
-      concatena_lista(raiz->v_agm, cv->v_agm);
+      tornar_vizinho_da_raiz(raiz, cv->vizinhos);
       //concatena_lista(raiz->vizinhos, cv->vizinhos);
-    }else{
-      if(cv->maior_dist_folha ==  raiz->maior_dist_folha - 1){
-          nova_maior_distancia_folha = cv->maior_dist_folha+1;
-      }
     }
   }
-  raiz->maior_dist_folha = nova_maior_distancia_folha;
+  
   raiz->cor = cor;
 }
 Fila heuristica_mais_longe(grafo g){
@@ -420,32 +477,27 @@ Fila heuristica_mais_longe(grafo g){
   while(raiz->maior_dist_folha > 0){
     //printf("==MINHA MAIOR ALTURA: %i==\n", raiz->maior_dist_folha);
     no no_v = primeiro_no(raiz->v_agm);
+    int maior_dist = 0;
     cluster prox_cluster = NULL;
     for(;no_v;no_v = proximo_no(no_v)){
       cluster cv = conteudo(no_v);
       
       //printf("pc:%i id:%i\n", cv->maior_dist_folha, cv->id);
-      if(cv->maior_dist_folha == raiz->maior_dist_folha-1){
-        //printf("==--1\n");
-        if(prox_cluster){
-          if(cv->tamanho > prox_cluster->tamanho){
-            //printf("maior\n");
-            prox_cluster = cv;
-          }
-        }else{
-          //printf("primeiro\n");
-          prox_cluster = cv;
-        }
-        //printf("entrou\n");
+      if(cv->maior_dist_folha >= maior_dist){
+        prox_cluster = cv;
+        maior_dist = cv->maior_dist_folha;
+        //cv->tamanho > prox_cluster->tamanho
       }
     }
-    int* cor_solucao = malloc(sizeof(int));
-    *cor_solucao = prox_cluster->cor;
-    enfileira(cor_solucao, solucao);
-    //printf("PROX_COR:%i id:%i\n\n", prox_cluster->cor, prox_cluster->id);
-    mesclar(raiz, prox_cluster->cor);
 
-
+    raiz->maior_dist_folha = maior_dist;
+    if(prox_cluster){
+      int* cor_solucao = malloc(sizeof(int));
+      *cor_solucao = prox_cluster->cor;
+      enfileira(cor_solucao, solucao);
+      //printf("PROX_COR:%i id:%i\n\n", prox_cluster->cor, prox_cluster->id);
+      mesclar(raiz, prox_cluster->cor);
+    }
 
   }
 

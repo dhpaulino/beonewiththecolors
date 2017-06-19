@@ -11,6 +11,7 @@ struct cluster{
 	int id;
 	int tamanho;
 	int marcado;
+	int desativado;
 	posicao pos;
 	lista vizinhos;
 
