@@ -33,6 +33,8 @@ void carrega_mapa(tmapa *m) {
   }
 }
 
+
+//Marca os cluster dentro da scruct do mapa e retorna uma fila dos clusters encontrados
 Fila detecta_clusters(tmapa* m){
 
   Fila proximas_pos = constroi_fila();
@@ -116,6 +118,7 @@ Fila detecta_clusters(tmapa* m){
 
 
 
+//encontra um cluster em uma fila a dado o seu id
 cluster encontrar_pelo_id_fila(int id, Fila clusters){
   ElementoFila ef = clusters->frente;
   while(ef){
@@ -127,6 +130,7 @@ cluster encontrar_pelo_id_fila(int id, Fila clusters){
   }
   return NULL; 
 }
+//encontra um cluster em uma lista a dado o seu id
 cluster encontrar_pelo_id_lista(int id, lista clusters){
   no n = primeiro_no(clusters);
   while(n){
@@ -138,6 +142,7 @@ cluster encontrar_pelo_id_lista(int id, lista clusters){
   }
   return NULL; 
 }
+//dado um mapa com os clusters já marcados e uma fila dos memso, gera um grafo
 grafo obtem_grafo(tmapa* m, Fila fclusters){
 
   Fila proximas_pos = constroi_fila();
@@ -266,7 +271,7 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
 
 
 
-
+//sendo c uma folha, atualiza a maior distância de c e de seus antecessores com relação a uma folha descendente
 void mudar_dist_folha(cluster c){
   int dist = 0;
   while(c){ 
@@ -282,6 +287,7 @@ void mudar_dist_folha(cluster c){
           1 -> na fila
           2 -> processado
   */
+//preenche a lista de vizinhos e pai dos clusters de acordo com a arvore geradora criada
 cluster marcar_agm(grafo g){
 
   Fila f = constroi_fila();
@@ -364,10 +370,11 @@ void arruma_mais_distante(cluster pai, cluster filho){
   }
 
 }
+
+//adiciona a lista de vizinhos de um cluster aos filhos da raiz, não incluindo a própria raiz, clusters desativados e que já são filhos
 void tornar_vizinho_da_raiz(cluster raiz, lista vizinhos){
   no no_v = primeiro_no(vizinhos);
   cluster cv;
-  //printf("raiz:%i\n", raiz->desativado);
   for(;no_v; no_v = proximo_no(no_v)){
     cv = (cluster)conteudo(no_v);
     if(cv->desativado){
@@ -389,6 +396,7 @@ void tornar_vizinho_da_raiz(cluster raiz, lista vizinhos){
   concatena_lista(raiz->v_agm, vizinhos);
 }
 
+//dada uma cor remove os filhos correspondente e adiciona os seus vizinhos aos filhos da raiz
 void mesclar(cluster raiz, int cor){
   no no_v = primeiro_no(raiz->v_agm);
   for(;no_v;no_v = proximo_no(no_v)){
