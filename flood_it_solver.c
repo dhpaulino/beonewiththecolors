@@ -6,11 +6,6 @@
 #include "fila.h"
 #include "grafo.h"
 #include "lista.h"
-#define passei_fundo 6
-
-
-
-#define N 3
 
 typedef struct {
 	int nlinhas;
@@ -37,54 +32,6 @@ void carrega_mapa(tmapa *m) {
 			scanf("%d", &(m->mapa[i][j]));
   }
 }
-
-void mostra_mapa(tmapa *m) {
-	int i, j;
-
-	printf("%d %d %d\n", m->nlinhas, m->ncolunas, m->ncores);
-
-	for(i = 0; i < m->nlinhas; i++) {
-		for(j = 0; j < m->ncolunas; j++)
-			if(m->ncores > 10)
-				printf("%02d ", m->mapa[i][j]);
-			else
-				printf("%d ", m->mapa[i][j]);
-
-		printf("\n");
-  }
-}
-void mostra_mapa_cor(tmapa *m) {
-	int i, j;
-	char* cor_ansi[] = { "\x1b[0m",
-				"\x1b[31m", "\x1b[32m", "\x1b[33m",
-				"\x1b[34m", "\x1b[35m", "\x1b[36m",
-				"\x1b[37m", "\x1b[30;1m", "\x1b[31;1m",
-				"\x1b[32;1m", "\x1b[33;1m", "\x1b[34;1m",
-				"\x1b[35;1m", "\x1b[36;1m", "\x1b[37;1m"
-			};
-
-
-	if(m->ncores > 15) {
-		mostra_mapa(m);
-
-		return;
-	}
-}
-
-
-
-void copia_mapa(tmapa *fonte, tmapa *copia) {
-	copia->nlinhas = fonte->nlinhas;
-	copia->ncolunas = fonte->ncolunas;
-	copia->ncores = fonte->ncores;
-
-	for (int i = 0; i < fonte->nlinhas; i++)
-		for (int j = 0; j < fonte->ncolunas; j++)
-			copia->mapa[i][j] = fonte->mapa[i][j];
-}
-
-
-
 
 Fila detecta_clusters(tmapa* m){
 
@@ -113,10 +60,8 @@ Fila detecta_clusters(tmapa* m){
       cluster catual = constroi_cluster(id, cor, *atual);
       enfileira(catual, clusters);
 
-      //printf("Cluster: %i,%i  cor:%i\n", atual->lin, atual->col, cor);
       while(atual = desenfileira(proximas_pos)){
         catual->tamanho++;
-        //printf("atual: %i,%i\n", atual->lin, atual->col);
 
 
         //vizinho esquerda
@@ -210,15 +155,12 @@ grafo obtem_grafo(tmapa* m, Fila fclusters){
   	enfileira(atual, proximas_pos);
   	int id = catual->id;
     int id_marcado = -1*id;
-    //catual->id = id_marcado;//deixa id positivo
 
   	m->mapa[atual->lin][atual->col] = id_marcado;
 
-  	//printf("Cluster: %i,%i\n", atual->lin, atual->col);
   	while(atual = desenfileira(proximas_pos)){
-  		//printf("\natual: %i,%i\n", atual->lin, atual->col);
 
-      //mostra_mapa(m);
+     
   		//vizinho esquerda
   		if(atual->col != 0){
   			
@@ -366,10 +308,8 @@ cluster marcar_agm(grafo g){
         insere_lista(cv, atual->v_agm);
         enfileira(cv, f);
       }else if(cv->marcado == 1){
-        //diminuir ifs
         if(cv->pai->altura == atual->altura){
           if(tamanho_lista(atual->vizinhos) > tamanho_lista(cv->pai->vizinhos)){
-            //printf("ATUAL:%i\tANTERIOR:%i\tFILHO:%i\n", atual->id, cv->pai->id, cv->id);
             qtd_filhos++;
             remove_pelo_conteudo(cv, cv->pai->v_agm);
             if(tamanho_lista(cv->pai->v_agm) == 0){
@@ -436,10 +376,7 @@ void tornar_vizinho_da_raiz(cluster raiz, lista vizinhos){
       if(cv->pai == raiz){
         remove_no(vizinhos, no_v, NULL);
       }else{
-        //TODO: remover a relação com a raiz quando gera o grafo
         if(cv != raiz){
-          //printf("PAI:%i CLUSTER:%i\n", cv->pai->id, cv->id);
-          //mudar_dist_folha(cv->pai);
           arruma_mais_distante(cv->pai, cv);
           cv->pai = raiz;
           cv->altura--;
@@ -453,21 +390,13 @@ void tornar_vizinho_da_raiz(cluster raiz, lista vizinhos){
 }
 
 void mesclar(cluster raiz, int cor){
-    //no no_v = primeiro_no(raiz->vizinhos);
   no no_v = primeiro_no(raiz->v_agm);
   for(;no_v;no_v = proximo_no(no_v)){
     cluster cv = conteudo(no_v);
     if(cv->cor == cor){
-    //  remove_no(raiz->vizinhos, no_v, NULL);
-      //remove_pelo_conteudo(cv, raiz->v_agm);
-      //printf("Removido %i\n", cv->id);
-      //TODO: desativar em todos os  vizinhos
-      //printf("\nPintado:%i\n", cv->id);
       cv->desativado = 1;
       remove_no(raiz->v_agm, no_v, NULL);
-      //ARRUMAr
       tornar_vizinho_da_raiz(raiz, cv->vizinhos);
-      //concatena_lista(raiz->vizinhos, cv->vizinhos);
     }
   }
   
@@ -478,18 +407,15 @@ Fila heuristica_mais_longe(grafo g){
 
   Fila solucao = constroi_fila();
   while(1){
-    //printf("==MINHA MAIOR ALTURA: %i==\n", raiz->maior_dist_folha);
     no no_v = primeiro_no(raiz->v_agm);
     int maior_dist = 0;
     cluster prox_cluster = NULL;
     for(;no_v;no_v = proximo_no(no_v)){
       cluster cv = conteudo(no_v);
       
-      //printf("pc:%i id:%i\n", cv->maior_dist_folha, cv->id);
       if(cv->maior_dist_folha >= maior_dist){
         prox_cluster = cv;
         maior_dist = cv->maior_dist_folha;
-        //cv->tamanho > prox_cluster->tamanho
       }
     }
 
@@ -498,7 +424,6 @@ Fila heuristica_mais_longe(grafo g){
       int* cor_solucao = malloc(sizeof(int));
       *cor_solucao = prox_cluster->cor;
       enfileira(cor_solucao, solucao);
-      //printf("PROX_COR:%i id:%i\n\n", prox_cluster->cor, prox_cluster->id);
       mesclar(raiz, prox_cluster->cor);
     }else{
       break;
@@ -525,18 +450,14 @@ int main(int argc, char **argv) {
   carrega_mapa(&m);
 
 
-	//mostra_mapa(&m);
-	//mostra_mapa_cor(&m);
+
 	Fila fclusters = detecta_clusters(&m);
 
-  //mostra_mapa(&m);
-  //printf("OBTEM GRAFO\n");
+ 
   grafo g  = obtem_grafo(&m, fclusters);
-  //mostra_mapa(&m);
-  print_grafo(g);
 
   cluster mais_distante = marcar_agm(g);
-  print_agm(g);
+  
   Fila solucao = heuristica_mais_longe(g);
   print_solucao(solucao);
 

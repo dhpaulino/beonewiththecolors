@@ -30,10 +30,6 @@ cluster constroi_cluster(int id, int cor,posicao pos){
 	c->maior_dist_folha = 0;
 	c->pai = NULL;
 	c->desativado = 0;
-	/*if(!g->primeiro){
-		g->primeiro = c;
-	}
-	g->tamanho++;*/
 	return c;
 }
 
