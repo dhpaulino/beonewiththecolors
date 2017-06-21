@@ -6,6 +6,7 @@
 #include "fila.h"
 #include "grafo.h"
 #include "lista.h"
+#include <string.h>
 #define passei_fundo 6
 
 
@@ -508,6 +509,72 @@ Fila heuristica_mais_longe(grafo g){
 
   return solucao;
 }
+
+typedef struct acao{
+
+int cor, peso;
+} acao;
+
+
+Fila heuristica_mais_longe_pela_cor(grafo g, int ncores){
+
+  cluster raiz = g->primeiro;
+
+  Fila solucao = constroi_fila();
+  
+  int soma_mais_distante[ncores+1];
+  int qtd_clusters[ncores+1];
+  while(1){
+  
+
+   
+    for(int i=0;i<=ncores;i++){
+      soma_mais_distante[i] = 0;
+      qtd_clusters[i] = 0;
+    }
+    no no_v = primeiro_no(raiz->v_agm);
+    
+  
+    for(;no_v;no_v = proximo_no(no_v)){
+      cluster cv = conteudo(no_v);
+        
+        soma_mais_distante[cv->cor]+= cv->maior_dist_folha;
+        qtd_clusters[cv->cor]++;
+    }
+
+    float maior_peso = 0;
+    int cor_maior_peso = -1;
+
+    for(int i=1;i<=ncores;++i){
+      if(qtd_clusters[i] > 0){
+        float peso = soma_mais_distante[i] + qtd_clusters[i];
+        //printf("peso:%f cor:%i\n",peso, i);
+        if(peso > maior_peso){
+          //printf("maior\n");
+          maior_peso = peso;
+          cor_maior_peso = i;
+        }
+      }
+
+  
+      
+    }
+
+    if(cor_maior_peso == -1){
+      break;
+    }    
+
+    int* cor_solucao = malloc(sizeof(int));
+    *cor_solucao = cor_maior_peso;
+    enfileira(cor_solucao, solucao);
+    mesclar(raiz, cor_maior_peso);
+
+
+  }
+
+  return solucao;
+}
+
 void print_solucao(Fila solucao){
   fprintf(stdout, "%i\n",solucao->tamanho);
   int* cor;
@@ -528,7 +595,7 @@ int main(int argc, char **argv) {
 	//mostra_mapa(&m);
 	//mostra_mapa_cor(&m);
 	Fila fclusters = detecta_clusters(&m);
-
+  //mostra_mapa(&m);
   //mostra_mapa(&m);
   //printf("OBTEM GRAFO\n");
   grafo g  = obtem_grafo(&m, fclusters);
@@ -537,7 +604,8 @@ int main(int argc, char **argv) {
 
   cluster mais_distante = marcar_agm(g);
   print_agm(g);
-  Fila solucao = heuristica_mais_longe(g);
+  //Fila solucao = heuristica_mais_longe(g);
+  Fila solucao = heuristica_mais_longe_pela_cor(g, m.ncores);
   print_solucao(solucao);
 
  
