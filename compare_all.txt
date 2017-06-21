@@ -4,8 +4,11 @@ Ordenado por: NUM_PASSOS
 D3	6	0m0.002s
 DistanteComPai	6	0m0.003s
 DM2	6	0m0.003s
-DM3	6	0m0.002s
+DM3	6	0m0.003s
+DM4	6	0m0.003s
+DM5	6	0m0.003s
 DM	6	0m0.002s
+DM6	6	0m0.001s
 h1	6	0m0.785s
 h2	6	0m0.252s
 h4	6	0m0.153s
@@ -18,7 +21,10 @@ Ordenado por: NUM_PASSOS
 h1		
 D3	5	0m0.002s
 DistanteComPai	5	0m0.003s
-DM3	5	0m0.003s
+DM3	5	0m0.002s
+DM4	5	0m0.002s
+DM5	5	0m0.002s
+DM6	5	0m0.004s
 h2	5	0m0.112s
 h4	5	0m0.117s
 h6	5	0m0.118s
@@ -32,8 +38,11 @@ Ordenado por: NUM_PASSOS
 D3	5	0m0.002s
 DistanteComPai	5	0m0.002s
 DM2	5	0m0.002s
-DM3	5	0m0.002s
+DM3	5	0m0.003s
+DM4	5	0m0.002s
 DM	5	0m0.003s
+DM5	5	0m0.002s
+DM6	5	0m0.001s
 h2	5	0m0.155s
 h4	5	0m0.126s
 h6	5	0m0.096s
@@ -43,11 +52,14 @@ h1	6	0m0.098s
 4_4_4_3
 Ordenado por: NUM_PASSOS
 
-DM3	4	0m0.001s
+DM3	4	0m0.002s
+DM4	4	0m0.002s
 D3	5	0m0.002s
 DistanteComPai	5	0m0.002s
 DM2	5	0m0.002s
 DM	5	0m0.002s
+DM5	5	0m0.002s
+DM6	5	0m0.001s
 h1	5	0m0.128s
 h2	5	0m0.136s
 h4	5	0m0.096s
@@ -59,6 +71,9 @@ Ordenado por: NUM_PASSOS
 
 D3	5	0m0.002s
 DistanteComPai	5	0m0.001s
+DM4	5	0m0.002s
+DM5	5	0m0.002s
+DM6	5	0m0.001s
 h2	5	0m0.136s
 h4	5	0m0.096s
 h6	5	0m0.104s
@@ -74,8 +89,11 @@ Ordenado por: NUM_PASSOS
 D3	6	0m0.002s
 DistanteComPai	6	0m0.001s
 DM2	6	0m0.002s
-DM3	6	0m0.001s
+DM3	6	0m0.002s
+DM4	6	0m0.001s
+DM5	6	0m0.002s
 DM	6	0m0.002s
+DM6	6	0m0.001s
 h1	6	0m0.107s
 h2	6	0m0.099s
 h4	6	0m0.092s
@@ -94,6 +112,9 @@ maior_cluster	5	0m0.001s
 D3	6	0m0.002s
 DistanteComPai	6	0m0.001s
 DM3	6	0m0.001s
+DM4	6	0m0.001s
+DM5	6	0m0.002s
+DM6	6	0m0.001s
 h4	6	0m0.144s
 mais_distante	6	0m0.002s
 4_4_4_7
@@ -104,6 +125,9 @@ D3	7	0m0.002s
 DistanteComPai	7	0m0.001s
 DM2	7	0m0.001s
 DM3	7	0m0.001s
+DM4	7	0m0.002s
+DM5	7	0m0.001s
+DM6	7	0m0.001s
 DM	7	0m0.002s
 h1	7	0m0.155s
 h2	7	0m0.114s
@@ -121,15 +145,21 @@ maior_cluster	4	0m0.001s
 D3	5	0m0.001s
 DistanteComPai	6	0m0.001s
 DM2	6	0m0.001s
-DM3	6	0m0.002s
+DM3	6	0m0.001s
+DM4	6	0m0.002s
+DM5	6	0m0.001s
 DM	6	0m0.002s
+DM6	6	0m0.001s
 mais_distante	6	0m0.002s
 4_4_4_9
 Ordenado por: NUM_PASSOS
 
 D3	5	0m0.001s
 DistanteComPai	5	0m0.001s
+DM4	5	0m0.001s
 DM	5	0m0.002s
+DM5	5	0m0.002s
+DM6	5	0m0.001s
 h1	5	0m0.118s
 h4	5	0m0.101s
 h6	5	0m0.111s
@@ -146,8 +176,11 @@ maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
 D3	5	0m0.002s
 DM2	5	0m0.002s
-DM3	5	0m0.001s
+DM3	5	0m0.002s
+DM4	5	0m0.002s
 DM	5	0m0.002s
+DM5	5	0m0.001s
+DM6	5	0m0.001s
 h1	5	0m0.002s
 h2	5	0m0.002s
 h4	5	0m0.002s
@@ -161,7 +194,10 @@ mais_distante	NULL	NULL
 D3	5	0m0.002s
 DM2	5	0m0.001s
 DM3	5	0m0.001s
+DM4	5	0m0.002s
 DM	5	0m0.002s
+DM5	5	0m0.001s
+DM6	5	0m0.001s
 h1	5	0m0.001s
 h2	5	0m0.001s
 h4	5	0m0.001s
@@ -176,6 +212,9 @@ D3	3	0m0.001s
 DM2	3	0m0.001s
 DM	3	0m0.001s
 DM3	3	0m0.001s
+DM4	3	0m0.001s
+DM5	3	0m0.001s
+DM6	3	0m0.001s
 h1	3	0m0.001s
 h2	3	0m0.001s
 h4	3	0m0.001s
@@ -189,7 +228,10 @@ mais_distante	NULL	NULL
 D3	6	0m0.002s
 DM2	6	0m0.002s
 DM3	6	0m0.001s
+DM4	6	0m0.001s
+DM5	6	0m0.001s
 DM	6	0m0.001s
+DM6	6	0m0.001s
 h1	6	0m0.001s
 h2	6	0m0.001s
 h4	6	0m0.001s
@@ -203,7 +245,10 @@ mais_distante	NULL	NULL
 D3	6	0m0.001s
 DM2	6	0m0.001s
 DM3	6	0m0.001s
+DM4	6	0m0.001s
+DM5	6	0m0.001s
 DM	6	0m0.001s
+DM6	6	0m0.001s
 h1	6	0m0.001s
 h2	6	0m0.001s
 h4	6	0m0.001s
@@ -215,6 +260,9 @@ DistanteComPai	NULL	NULL
 maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
 DM3	3	0m0.001s
+DM4	3	0m0.001s
+DM5	3	0m0.001s
+DM6	3	0m0.001s
 h1	3	0m0.001s
 h2	3	0m0.001s
 h4	3	0m0.001s
@@ -232,6 +280,9 @@ D3	4	0m0.001s
 DM2	4	0m0.001s
 DM3	4	0m0.001s
 DM	4	0m0.001s
+DM4	4	0m0.001s
+DM5	4	0m0.001s
+DM6	4	0m0.001s
 h2	4	0m0.001s
 h4	4	0m0.001s
 h6	4	0m0.001s
@@ -245,7 +296,10 @@ mais_distante	NULL	NULL
 D3	6	0m0.001s
 DM2	6	0m0.001s
 DM3	6	0m0.001s
+DM4	6	0m0.001s
+DM5	6	0m0.001s
 DM	6	0m0.001s
+DM6	6	0m0.001s
 h1	6	0m0.001s
 h2	6	0m0.001s
 h4	6	0m0.001s
@@ -260,6 +314,9 @@ D3	3	0m0.001s
 DM2	3	0m0.001s
 DM	3	0m0.001s
 DM3	3	0m0.001s
+DM4	3	0m0.001s
+DM5	3	0m0.002s
+DM6	3	0m0.001s
 h1	3	0m0.001s
 h2	3	0m0.001s
 h4	3	0m0.001s
@@ -274,6 +331,9 @@ D3	4	0m0.001s
 DM2	4	0m0.001s
 DM3	4	0m0.001s
 DM	4	0m0.001s
+DM4	4	0m0.001s
+DM5	4	0m0.001s
+DM6	4	0m0.001s
 h2	4	0m0.001s
 h4	4	0m0.001s
 h6	4	0m0.001s
@@ -284,7 +344,10 @@ Ordenado por: NUM_PASSOS
 DistanteComPai	NULL	NULL
 maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
-DM3	5	0m0.001s
+DM3	5	0m0.002s
+DM4	5	0m0.001s
+DM5	5	0m0.001s
+DM6	5	0m0.001s
 h1	5	0m0.001s
 DM2	6	0m0.001s
 DM	6	0m0.001s
@@ -300,6 +363,9 @@ maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
 D3	6	0m0.001s
 DM3	6	0m0.001s
+DM4	6	0m0.001s
+DM5	6	0m0.001s
+DM6	6	0m0.001s
 h4	6	0m0.001s
 h6	6	0m0.001s
 DM2	7	0m0.001s
@@ -314,6 +380,9 @@ maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
 DM2	8	0m0.001s
 DM3	8	0m0.001s
+DM4	8	0m0.001s
+DM5	8	0m0.001s
+DM6	8	0m0.001s
 DM	8	0m0.002s
 h2	8	0m0.001s
 h4	8	0m0.001s
@@ -329,6 +398,9 @@ mais_distante	NULL	NULL
 D3	9	0m0.001s
 DM2	9	0m0.001s
 DM3	9	0m0.001s
+DM4	9	0m0.001s
+DM5	9	0m0.001s
+DM6	9	0m0.001s
 DM	9	0m0.002s
 h1	9	0m0.001s
 h2	9	0m0.001s
@@ -343,6 +415,9 @@ mais_distante	NULL	NULL
 D3	7	0m0.001s
 DM2	7	0m0.001s
 DM3	7	0m0.001s
+DM4	7	0m0.001s
+DM5	7	0m0.001s
+DM6	7	0m0.001s
 DM	7	0m0.005s
 h1	7	0m0.001s
 h2	7	0m0.001s
@@ -356,6 +431,9 @@ maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
 DM2	7	0m0.001s
 DM3	7	0m0.001s
+DM4	7	0m0.001s
+DM5	7	0m0.001s
+DM6	7	0m0.001s
 DM	7	0m0.002s
 h1	7	0m0.001s
 h2	7	0m0.001s
@@ -369,6 +447,9 @@ DistanteComPai	NULL	NULL
 maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
 DM3	8	0m0.001s
+DM4	8	0m0.001s
+DM5	8	0m0.001s
+DM6	8	0m0.001s
 h1	8	0m0.001s
 h2	8	0m0.002s
 h4	8	0m0.001s
@@ -385,6 +466,9 @@ mais_distante	NULL	NULL
 D3	7	0m0.001s
 DM2	7	0m0.001s
 DM3	7	0m0.001s
+DM4	7	0m0.001s
+DM5	7	0m0.001s
+DM6	7	0m0.001s
 DM	7	0m0.001s
 h1	7	0m0.001s
 h2	7	0m0.001s
@@ -398,6 +482,9 @@ maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
 DM2	8	0m0.001s
 DM3	8	0m0.001s
+DM4	8	0m0.001s
+DM5	8	0m0.001s
+DM6	8	0m0.001s
 DM	8	0m0.001s
 h4	8	0m0.001s
 h6	8	0m0.001s
@@ -415,6 +502,9 @@ h6	8	0m0.001s
 D3	9	0m0.001s
 DM2	9	0m0.001s
 DM3	9	0m0.001s
+DM4	9	0m0.001s
+DM5	9	0m0.001s
+DM6	9	0m0.001s
 DM	9	0m0.001s
 h1	9	0m0.001s
 h2	9	0m0.001s
@@ -425,6 +515,9 @@ DistanteComPai	NULL	NULL
 maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
 DM3	6	0m0.001s
+DM4	6	0m0.001s
+DM5	6	0m0.001s
+DM6	6	0m0.001s
 h1	6	0m0.001s
 h2	6	0m0.001s
 h4	6	0m0.001s
@@ -441,6 +534,9 @@ mais_distante	NULL	NULL
 D3	8	0m0.001s
 DM2	8	0m0.001s
 DM3	8	0m0.001s
+DM4	8	0m0.001s
+DM5	8	0m0.001s
+DM6	8	0m0.001s
 DM	8	0m0.001s
 h4	8	0m0.001s
 h6	8	0m0.001s
@@ -456,6 +552,9 @@ DM2	7	0m0.001s
 DM3	7	0m0.001s
 DM	7	0m0.001s
 h1	7	0m0.001s
+DM4	9	0m0.001s
+DM5	9	0m0.001s
+DM6	9	0m0.001s
 h2	9	0m0.001s
 h4	9	0m0.001s
 h6	9	0m0.001s
@@ -468,6 +567,9 @@ maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
 D3	9	0m0.001s
 DM2	9	0m0.001s
+DM4	9	0m0.001s
+DM5	9	0m0.001s
+DM6	9	0m0.001s
 DM	9	0m0.001s
 h4	9	0m0.001s
 h6	9	0m0.001s
@@ -480,8 +582,11 @@ Ordenado por: NUM_PASSOS
 DistanteComPai	NULL	NULL
 maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
+DM4	8	0m0.001s
 h2	8	0m0.001s
 DM3	9	0m0.001s
+DM5	9	0m0.001s
+DM6	9	0m0.001s
 h4	9	0m0.001s
 h6	9	0m0.001s
 D3	10	0m0.001s
@@ -498,6 +603,9 @@ h4	9	0m0.001s
 h6	9	0m0.001s
 D3	10	0m0.001s
 DM	10	0m0.001s
+DM4	10	0m0.001s
+DM5	10	0m0.001s
+DM6	10	0m0.001s
 h1	10	0m0.001s
 DM2	11	0m0.001s
 DM3	11	0m0.001s
@@ -509,6 +617,9 @@ DistanteComPai	NULL	NULL
 maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
 D3	9	0m0.001s
+DM4	9	0m0.001s
+DM5	9	0m0.001s
+DM6	9	0m0.001s
 DM	10	0m0.001s
 DM2	10	0m0.001s
 DM3	10	0m0.001s
@@ -529,6 +640,9 @@ h2	9	0m0.001s
 h4	9	0m0.001s
 h6	9	0m0.001s
 D3	10	0m0.001s
+DM4	10	0m0.001s
+DM5	10	0m0.001s
+DM6	10	0m0.001s
 h1	10	0m0.001s
 7_7_4_7
 Ordenado por: NUM_PASSOS
@@ -538,6 +652,9 @@ maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
 DM2	9	0m0.001s
 DM3	9	0m0.001s
+DM4	9	0m0.001s
+DM5	9	0m0.001s
+DM6	9	0m0.001s
 DM	9	0m0.001s
 h4	9	0m0.001s
 h6	9	0m0.001s
@@ -555,6 +672,9 @@ h4	9	0m0.001s
 h6	9	0m0.001s
 DM	10	0m0.001s
 DM2	10	0m0.001s
+DM4	10	0m0.001s
+DM5	10	0m0.001s
+DM6	10	0m0.001s
 D3	11	0m0.001s
 DM3	11	0m0.001s
 h2	11	0m0.001s
@@ -564,6 +684,9 @@ Ordenado por: NUM_PASSOS
 DistanteComPai	NULL	NULL
 maior_cluster	NULL	NULL
 mais_distante	NULL	NULL
+DM4	7	0m0.001s
+DM5	7	0m0.001s
+DM6	7	0m0.001s
 h4	7	0m0.001s
 h6	7	0m0.001s
 D3	8	0m0.001s
@@ -580,8 +703,11 @@ DM3	24	0m0.001s
 h2	24	0m0.116s
 h6	24	0m0.110s
 maior_cluster	24	0m0.004s
+DM5	25	0m0.001s
+DM6	25	0m0.001s
 DM2	27	0m0.002s
 DM	27	0m0.002s
+DM4	27	0m0.001s
 h1	27	0m0.104s
 D3	28	0m0.001s
 mais_distante	33	0m0.002s
@@ -590,7 +716,10 @@ DistanteComPai	34	0m0.002s
 Ordenado por: NUM_PASSOS
 
 h6	23	0m0.139s
+DM5	24	0m0.002s
 h4	24	0m0.110s
+DM4	25	0m0.002s
+DM6	25	0m0.001s
 DM3	26	0m0.001s
 h2	26	0m0.098s
 maior_cluster	26	0m0.003s
@@ -603,7 +732,10 @@ mais_distante	37	0m0.002s
 10_10_10_2
 Ordenado por: NUM_PASSOS
 
-DM3	22	0m0.001s
+DM5	20	0m0.001s
+DM6	20	0m0.001s
+DM3	22	0m0.002s
+DM4	22	0m0.001s
 h2	22	0m0.113s
 h4	22	0m0.103s
 h6	22	0m0.126s
@@ -617,13 +749,16 @@ h1	30	0m0.137s
 10_10_10_3
 Ordenado por: NUM_PASSOS
 
+DM5	23	0m0.001s
+DM6	23	0m0.001s
 h1	24	0m0.103s
 h4	24	0m0.117s
 h6	24	0m0.113s
 DM	25	0m0.002s
 h2	25	0m0.108s
 maior_cluster	25	0m0.003s
-DM3	26	0m0.001s
+DM3	26	0m0.002s
+DM4	27	0m0.002s
 DistanteComPai	28	0m0.002s
 DM2	28	0m0.002s
 D3	29	0m0.002s
@@ -633,9 +768,12 @@ Ordenado por: NUM_PASSOS
 
 h4	23	0m0.110s
 h6	23	0m0.096s
+DM5	25	0m0.001s
+DM6	25	0m0.001s
 DM2	26	0m0.002s
 DM	26	0m0.001s
 DM3	26	0m0.001s
+DM4	26	0m0.001s
 h2	26	0m0.105s
 maior_cluster	26	0m0.003s
 D3	27	0m0.001s
@@ -645,13 +783,16 @@ mais_distante	30	0m0.002s
 10_10_10_5
 Ordenado por: NUM_PASSOS
 
+DM5	25	0m0.001s
+DM6	25	0m0.001s
 h2	25	0m0.146s
 h4	25	0m0.107s
 maior_cluster	25	0m0.003s
 h6	26	0m0.130s
 D3	27	0m0.002s
 DM	28	0m0.001s
-DM3	28	0m0.002s
+DM3	28	0m0.001s
+DM4	28	0m0.001s
 h1	28	0m0.098s
 DM2	30	0m0.002s
 mais_distante	31	0m0.002s
@@ -660,9 +801,12 @@ DistanteComPai	34	0m0.002s
 Ordenado por: NUM_PASSOS
 
 h4	23	0m0.111s
+DM5	24	0m0.001s
 h6	24	0m0.154s
 DM	26	0m0.002s
 DM3	26	0m0.001s
+DM4	26	0m0.001s
+DM6	26	0m0.001s
 DM2	27	0m0.002s
 D3	28	0m0.002s
 h1	29	0m0.100s
@@ -673,8 +817,11 @@ DistanteComPai	34	0m0.002s
 10_10_10_7
 Ordenado por: NUM_PASSOS
 
+DM6	25	0m0.001s
 DM2	26	0m0.002s
 DM3	26	0m0.001s
+DM4	26	0m0.001s
+DM5	26	0m0.001s
 h6	26	0m0.130s
 DM	27	0m0.001s
 h1	27	0m0.092s
@@ -687,7 +834,10 @@ mais_distante	33	0m0.002s
 10_10_10_8
 Ordenado por: NUM_PASSOS
 
+DM4	24	0m0.001s
 DM2	26	0m0.002s
+DM5	26	0m0.001s
+DM6	26	0m0.001s
 h4	26	0m0.106s
 h6	26	0m0.102s
 DM	27	0m0.001s
@@ -704,9 +854,12 @@ Ordenado por: NUM_PASSOS
 h4	24	0m0.114s
 h6	24	0m0.102s
 DM	27	0m0.001s
-DM3	27	0m0.002s
+DM3	27	0m0.001s
+DM5	27	0m0.002s
+DM6	27	0m0.001s
 D3	28	0m0.002s
 DM2	28	0m0.001s
+DM4	28	0m0.001s
 h1	28	0m0.094s
 h2	29	0m0.101s
 maior_cluster	29	0m0.003s
@@ -720,7 +873,10 @@ DM3	14	0m0.001s
 h6	14	0m0.002s
 DM	15	0m0.001s
 DM2	15	0m0.001s
+DM5	15	0m0.001s
 D3	16	0m0.001s
+DM4	16	0m0.001s
+DM6	16	0m0.001s
 h2	16	0m0.001s
 h4	16	0m0.002s
 maior_cluster	16	0m0.002s
@@ -730,11 +886,14 @@ h1	17	0m0.001s
 Ordenado por: NUM_PASSOS
 
 mais_distante	NULL	NULL
+DM5	15	0m0.001s
+DM6	15	0m0.001s
 D3	16	0m0.001s
 h4	16	0m0.002s
 h6	16	0m0.002s
 DM	17	0m0.001s
 DM3	17	0m0.001s
+DM4	17	0m0.001s
 h2	17	0m0.001s
 maior_cluster	17	0m0.002s
 DistanteComPai	18	0m0.001s
@@ -750,10 +909,13 @@ h6	13	0m0.002s
 DM	15	0m0.001s
 DM2	15	0m0.001s
 DM3	15	0m0.001s
+DM5	15	0m0.001s
+DM6	15	0m0.001s
 h1	15	0m0.001s
 h2	15	0m0.001s
 maior_cluster	15	0m0.002s
 DistanteComPai	16	0m0.002s
+DM4	16	0m0.001s
 10_10_5_3
 Ordenado por: NUM_PASSOS
 
@@ -765,8 +927,11 @@ DM2	15	0m0.001s
 h4	16	0m0.002s
 h6	16	0m0.002s
 DM3	17	0m0.001s
+DM4	17	0m0.001s
 h1	17	0m0.001s
 D3	18	0m0.001s
+DM5	18	0m0.001s
+DM6	18	0m0.001s
 DistanteComPai	20	0m0.002s
 10_10_5_4
 Ordenado por: NUM_PASSOS
@@ -776,9 +941,12 @@ h4	14	0m0.002s
 h6	14	0m0.002s
 DistanteComPai	15	0m0.002s
 DM3	15	0m0.001s
+DM5	15	0m0.001s
+DM6	15	0m0.001s
 D3	16	0m0.001s
 DM	16	0m0.001s
 DM2	16	0m0.001s
+DM4	17	0m0.001s
 h1	17	0m0.001s
 h2	19	0m0.001s
 maior_cluster	19	0m0.002s
@@ -788,6 +956,9 @@ Ordenado por: NUM_PASSOS
 mais_distante	NULL	NULL
 DM	14	0m0.001s
 DM2	14	0m0.001s
+DM4	14	0m0.001s
+DM5	14	0m0.001s
+DM6	14	0m0.001s
 D3	15	0m0.001s
 DistanteComPai	15	0m0.001s
 DM3	15	0m0.001s
@@ -800,6 +971,9 @@ h1	17	0m0.001s
 Ordenado por: NUM_PASSOS
 
 mais_distante	NULL	NULL
+DM4	15	0m0.001s
+DM5	15	0m0.001s
+DM6	15	0m0.001s
 h4	15	0m0.002s
 h6	15	0m0.002s
 D3	16	0m0.001s
@@ -816,21 +990,27 @@ Ordenado por: NUM_PASSOS
 mais_distante	NULL	NULL
 h4	12	0m0.002s
 h6	12	0m0.002s
-DM3	13	0m0.002s
+DM3	13	0m0.001s
 h2	13	0m0.001s
 maior_cluster	13	0m0.001s
 D3	14	0m0.001s
 DistanteComPai	14	0m0.001s
+DM4	14	0m0.001s
+DM6	14	0m0.001s
 h1	14	0m0.001s
 DM	15	0m0.001s
 DM2	15	0m0.001s
+DM5	15	0m0.001s
 10_10_5_8
 Ordenado por: NUM_PASSOS
 
 mais_distante	NULL	NULL
+DM6	14	0m0.001s
 DistanteComPai	15	0m0.002s
 DM	15	0m0.002s
 DM3	15	0m0.001s
+DM4	15	0m0.001s
+DM5	15	0m0.001s
 D3	16	0m0.001s
 DM2	16	0m0.001s
 h4	16	0m0.002s
@@ -844,8 +1024,11 @@ Ordenado por: NUM_PASSOS
 mais_distante	NULL	NULL
 DM2	16	0m0.002s
 DM3	16	0m0.001s
+DM4	16	0m0.001s
+DM6	16	0m0.001s
 h6	16	0m0.002s
 DM	17	0m0.001s
+DM5	17	0m0.001s
 h2	17	0m0.001s
 h4	17	0m0.002s
 maior_cluster	17	0m0.002s
@@ -856,8 +1039,11 @@ DistanteComPai	19	0m0.002s
 Ordenado por: NUM_PASSOS
 
 maior_cluster	0	0m0.001s
+DM4	72	0m0.003s
 h4	72	0m0.220s
 h6	75	0m0.197s
+DM5	76	0m0.003s
+DM6	77	0m0.002s
 DM3	80	0m0.003s
 DM	80	0m0.003s
 DM2	85	0m0.003s
@@ -871,8 +1057,11 @@ Ordenado por: NUM_PASSOS
 
 maior_cluster	0	0m0.001s
 h6	80	0m0.210s
+DM6	81	0m0.002s
 DM2	83	0m0.003s
+DM5	83	0m0.003s
 DM	83	0m0.003s
+DM4	84	0m0.003s
 h4	90	0m0.232s
 DM3	91	0m0.003s
 D3	92	0m0.003s
@@ -885,9 +1074,12 @@ Ordenado por: NUM_PASSOS
 
 maior_cluster	0	0m0.001s
 h4	80	0m0.265s
+DM4	82	0m0.003s
+DM6	85	0m0.002s
 DM	85	0m0.003s
 h6	85	0m0.202s
 DM2	87	0m0.005s
+DM5	88	0m0.004s
 DM3	90	0m0.003s
 D3	95	0m0.003s
 h2	111	0m0.125s
@@ -901,6 +1093,9 @@ maior_cluster	0	0m0.001s
 h6	76	0m0.225s
 h4	81	0m0.226s
 DM	85	0m0.003s
+DM4	86	0m0.003s
+DM5	88	0m0.004s
+DM6	88	0m0.003s
 D3	93	0m0.003s
 DM3	93	0m0.003s
 h1	95	0m0.184s
@@ -914,6 +1109,9 @@ Ordenado por: NUM_PASSOS
 maior_cluster	0	0m0.001s
 h6	83	0m0.253s
 h4	84	0m0.253s
+DM4	86	0m0.003s
+DM5	86	0m0.003s
+DM6	88	0m0.003s
 DM	90	0m0.003s
 D3	92	0m0.003s
 DM3	92	0m0.003s
@@ -927,7 +1125,10 @@ Ordenado por: NUM_PASSOS
 
 maior_cluster	0	0m0.001s
 h6	71	0m0.218s
+DM4	74	0m0.003s
 h4	76	0m0.235s
+DM5	79	0m0.004s
+DM6	82	0m0.003s
 DM2	85	0m0.003s
 DM	88	0m0.003s
 D3	92	0m0.003s
@@ -941,7 +1142,10 @@ Ordenado por: NUM_PASSOS
 
 maior_cluster	0	0m0.001s
 h6	72	0m0.224s
+DM5	73	0m0.003s
+DM6	77	0m0.002s
 DM2	80	0m0.003s
+DM4	81	0m0.003s
 D3	82	0m0.003s
 h4	82	0m0.258s
 DM	85	0m0.003s
@@ -956,7 +1160,10 @@ Ordenado por: NUM_PASSOS
 maior_cluster	0	0m0.001s
 h6	79	0m0.193s
 h4	80	0m0.211s
-DM3	87	0m0.003s
+DM4	83	0m0.002s
+DM5	83	0m0.003s
+DM6	84	0m0.003s
+DM3	87	0m0.002s
 DM2	88	0m0.003s
 DM	95	0m0.003s
 h1	95	0m0.130s
@@ -968,8 +1175,11 @@ mais_distante	125	0m0.004s
 Ordenado por: NUM_PASSOS
 
 maior_cluster	0	0m0.001s
+DM4	87	0m0.003s
 h6	90	0m0.211s
-DM3	97	0m0.003s
+DM6	92	0m0.003s
+DM5	96	0m0.003s
+DM3	97	0m0.002s
 h4	97	0m0.240s
 DM	100	0m0.003s
 DM2	101	0m0.003s
@@ -985,9 +1195,12 @@ maior_cluster	0	0m0.001s
 h4	75	0m0.256s
 h6	75	0m0.204s
 DM	83	0m0.003s
+DM5	86	0m0.003s
+DM6	87	0m0.003s
+DM4	88	0m0.003s
 DM2	89	0m0.002s
 h1	93	0m0.314s
-DM3	94	0m0.002s
+DM3	94	0m0.003s
 D3	96	0m0.002s
 h2	98	0m0.103s
 mais_distante	109	0m0.003s
@@ -997,10 +1210,13 @@ Ordenado por: NUM_PASSOS
 
 h6	69	0m0.308s
 h4	71	0m0.356s
+DM5	82	0m0.004s
+DM6	86	0m0.004s
 D3	87	0m0.004s
 DM2	87	0m0.004s
+DM4	87	0m0.005s
 DM	88	0m0.005s
-DM3	96	0m0.004s
+DM3	96	0m0.005s
 h2	97	0m0.117s
 maior_cluster	97	0m0.051s
 h1	105	0m0.204s
@@ -1011,9 +1227,12 @@ Ordenado por: NUM_PASSOS
 
 h4	72	0m0.382s
 h6	74	0m0.437s
+DM5	76	0m0.005s
 DM	80	0m0.004s
 DM2	81	0m0.004s
 DM3	81	0m0.005s
+DM4	81	0m0.004s
+DM6	83	0m0.004s
 D3	89	0m0.004s
 h2	94	0m0.134s
 maior_cluster	94	0m0.048s
@@ -1024,8 +1243,11 @@ mais_distante	106	0m0.005s
 Ordenado por: NUM_PASSOS
 
 h4	73	0m0.403s
+DM5	74	0m0.005s
 h6	75	0m0.376s
+DM4	76	0m0.004s
 DM	80	0m0.004s
+DM6	81	0m0.004s
 DM2	83	0m0.005s
 DM3	84	0m0.005s
 D3	86	0m0.004s
@@ -1039,6 +1261,9 @@ Ordenado por: NUM_PASSOS
 
 h4	66	0m0.320s
 h6	66	0m0.259s
+DM5	78	0m0.005s
+DM6	79	0m0.005s
+DM4	82	0m0.005s
 D3	83	0m0.004s
 DM2	84	0m0.004s
 DM	84	0m0.004s
@@ -1055,6 +1280,9 @@ h4	72	0m0.670s
 h6	72	0m0.467s
 DM	80	0m0.004s
 DM3	81	0m0.004s
+DM6	81	0m0.005s
+DM4	82	0m0.004s
+DM5	82	0m0.004s
 D3	83	0m0.005s
 DM2	85	0m0.005s
 h2	96	0m0.138s
@@ -1067,9 +1295,12 @@ Ordenado por: NUM_PASSOS
 
 h4	72	0m0.420s
 h6	73	0m0.395s
+DM4	75	0m0.004s
 DM	76	0m0.005s
 D3	77	0m0.005s
 DM2	84	0m0.004s
+DM6	86	0m0.004s
+DM5	87	0m0.004s
 DM3	88	0m0.004s
 h2	96	0m0.575s
 maior_cluster	96	0m0.044s
@@ -1079,8 +1310,11 @@ mais_distante	108	0m0.005s
 30_30_10_6
 Ordenado por: NUM_PASSOS
 
+DM6	75	0m0.005s
 h6	75	0m0.378s
 h4	78	0m0.366s
+DM5	80	0m0.004s
+DM4	81	0m0.004s
 D3	83	0m0.004s
 DM2	83	0m0.005s
 h2	85	0m0.123s
@@ -1095,11 +1329,14 @@ Ordenado por: NUM_PASSOS
 
 h4	73	0m0.318s
 h6	76	0m0.349s
+DM6	82	0m0.004s
 DM	82	0m0.004s
 D3	83	0m0.005s
+DM4	84	0m0.005s
+DM5	87	0m0.004s
 h2	87	0m0.116s
 maior_cluster	87	0m0.055s
-DM3	91	0m0.006s
+DM3	91	0m0.004s
 DM2	97	0m0.005s
 h1	107	0m0.178s
 DistanteComPai	113	0m0.005s
@@ -1109,10 +1346,13 @@ Ordenado por: NUM_PASSOS
 
 h4	75	0m0.351s
 h6	75	0m0.346s
+DM5	81	0m0.004s
 DM2	82	0m0.004s
+DM4	82	0m0.005s
+DM6	82	0m0.005s
 DM	85	0m0.004s
 D3	92	0m0.004s
-DM3	93	0m0.007s
+DM3	93	0m0.004s
 h2	97	0m0.167s
 maior_cluster	97	0m0.046s
 h1	106	0m0.126s
@@ -1123,11 +1363,14 @@ Ordenado por: NUM_PASSOS
 
 h4	69	0m0.340s
 h6	69	0m0.340s
+DM6	76	0m0.005s
+DM4	79	0m0.004s
+DM5	81	0m0.004s
 DM	81	0m0.004s
 h2	81	0m0.132s
 maior_cluster	81	0m0.037s
 DM2	83	0m0.004s
-DM3	83	0m0.005s
+DM3	83	0m0.004s
 D3	85	0m0.004s
 h1	107	0m0.121s
 mais_distante	107	0m0.004s
@@ -1138,10 +1381,13 @@ Ordenado por: NUM_PASSOS
 D3	28	0m0.004s
 h4	28	0m0.258s
 h6	28	0m0.274s
+DM5	29	0m0.003s
+DM6	29	0m0.004s
 DM	31	0m0.004s
 DistanteComPai	32	0m0.004s
 DM2	32	0m0.003s
-DM3	32	0m0.004s
+DM3	32	0m0.003s
+DM4	33	0m0.004s
 h2	33	0m0.098s
 maior_cluster	33	0m0.007s
 mais_distante	34	0m0.004s
@@ -1149,9 +1395,12 @@ h1	37	0m0.203s
 30_30_4_1
 Ordenado por: NUM_PASSOS
 
+DM6	35	0m0.003s
 h4	35	0m0.262s
 h6	35	0m0.283s
-DM3	36	0m0.004s
+DM3	36	0m0.003s
+DM4	36	0m0.004s
+DM5	36	0m0.004s
 DM2	37	0m0.003s
 DM	37	0m0.003s
 h1	37	0m0.293s
@@ -1165,12 +1414,15 @@ Ordenado por: NUM_PASSOS
 
 h4	28	0m0.237s
 h6	29	0m0.256s
+DM6	30	0m0.003s
 h2	30	0m0.094s
 maior_cluster	30	0m0.006s
 DM2	31	0m0.003s
 DM	31	0m0.003s
+DM4	31	0m0.004s
+DM5	31	0m0.003s
 D3	32	0m0.003s
-DM3	32	0m0.004s
+DM3	32	0m0.003s
 h1	35	0m0.126s
 DistanteComPai	38	0m0.003s
 mais_distante	38	0m0.003s
@@ -1179,6 +1431,8 @@ Ordenado por: NUM_PASSOS
 
 DM2	31	0m0.003s
 DM3	31	0m0.004s
+DM5	31	0m0.005s
+DM6	31	0m0.003s
 h2	31	0m0.099s
 h4	31	0m0.222s
 h6	31	0m0.246s
@@ -1186,6 +1440,7 @@ maior_cluster	31	0m0.006s
 D3	33	0m0.004s
 DistanteComPai	34	0m0.003s
 DM	34	0m0.003s
+DM4	35	0m0.004s
 h1	37	0m0.164s
 mais_distante	37	0m0.003s
 30_30_4_4
@@ -1196,6 +1451,9 @@ h6	29	0m0.245s
 D3	30	0m0.003s
 DM	30	0m0.003s
 DM2	31	0m0.003s
+DM4	31	0m0.003s
+DM5	31	0m0.004s
+DM6	31	0m0.003s
 h2	34	0m0.109s
 maior_cluster	34	0m0.006s
 DistanteComPai	35	0m0.003s
@@ -1205,7 +1463,10 @@ mais_distante	35	0m0.003s
 30_30_4_5
 Ordenado por: NUM_PASSOS
 
+DM6	25	0m0.003s
 D3	26	0m0.003s
+DM4	26	0m0.003s
+DM5	26	0m0.003s
 h4	27	0m0.252s
 h6	27	0m0.216s
 DM2	28	0m0.003s
@@ -1220,10 +1481,13 @@ h1	38	0m0.450s
 Ordenado por: NUM_PASSOS
 
 DM2	30	0m0.003s
+DM5	31	0m0.004s
 h4	31	0m0.296s
 h6	31	0m0.277s
 D3	32	0m0.003s
 DM	33	0m0.003s
+DM4	33	0m0.003s
+DM6	33	0m0.004s
 h1	33	0m0.134s
 DistanteComPai	34	0m0.003s
 DM3	35	0m0.004s
@@ -1237,6 +1501,9 @@ D3	28	0m0.003s
 DM2	28	0m0.003s
 h4	28	0m0.257s
 h6	28	0m0.231s
+DM4	29	0m0.004s
+DM6	29	0m0.003s
+DM5	30	0m0.003s
 h2	31	0m0.122s
 maior_cluster	31	0m0.006s
 DM	33	0m0.003s
@@ -1250,9 +1517,12 @@ Ordenado por: NUM_PASSOS
 h4	30	0m0.249s
 h6	30	0m0.247s
 D3	31	0m0.003s
+DM5	34	0m0.003s
+DM6	34	0m0.003s
 DM	35	0m0.003s
 DistanteComPai	39	0m0.004s
 DM2	39	0m0.003s
+DM4	39	0m0.003s
 mais_distante	39	0m0.003s
 h1	40	0m0.190s
 DM3	42	0m0.004s
@@ -1261,15 +1531,18 @@ maior_cluster	42	0m0.008s
 30_30_4_9
 Ordenado por: NUM_PASSOS
 
+DM5	27	0m0.004s
+DM6	27	0m0.004s
 h4	29	0m0.246s
 h6	29	0m0.295s
 DM	30	0m0.004s
 D3	33	0m0.003s
 DM2	34	0m0.003s
+DM4	34	0m0.004s
 h2	34	0m0.133s
 maior_cluster	34	0m0.007s
 DistanteComPai	35	0m0.003s
-DM3	35	0m0.004s
+DM3	35	0m0.003s
 h1	35	0m0.255s
 mais_distante	36	0m0.004s
 40_100_27_0
@@ -1279,10 +1552,13 @@ maior_cluster	0	0m0.001s
 mais_distante	NULL	NULL
 h6	303	0m6.656s
 h4	314	0m6.737s
+DM6	375	0m0.024s
 DM	377	0m0.026s
+DM5	381	0m0.024s
 DM2	400	0m0.022s
 D3	403	0m0.025s
-DM3	429	0m0.028s
+DM4	409	0m0.023s
+DM3	429	0m0.025s
 DistanteComPai	552	0m0.023s
 h1	579	0m0.123s
 h2	592	0m0.093s
@@ -1293,9 +1569,12 @@ maior_cluster	0	0m0.001s
 mais_distante	NULL	NULL
 h4	279	0m6.135s
 h6	281	0m6.150s
+DM6	380	0m0.025s
+DM5	385	0m0.024s
 DM	390	0m0.024s
+DM4	391	0m0.023s
 D3	403	0m0.023s
-DM3	434	0m0.028s
+DM3	434	0m0.022s
 DM2	435	0m0.025s
 DistanteComPai	552	0m0.021s
 h2	605	0m0.094s
@@ -1307,10 +1586,13 @@ maior_cluster	0	0m0.001s
 mais_distante	NULL	NULL
 h6	321	0m7.307s
 h4	324	0m6.910s
+DM6	381	0m0.024s
+DM4	390	0m0.027s
+DM5	394	0m0.025s
 DM2	403	0m0.023s
 D3	418	0m0.023s
 DM	420	0m0.024s
-DM3	429	0m0.028s
+DM3	429	0m0.023s
 DistanteComPai	560	0m0.021s
 h2	597	0m0.152s
 h1	624	0m0.171s
@@ -1321,10 +1603,13 @@ maior_cluster	0	0m0.001s
 mais_distante	NULL	NULL
 h6	291	0m6.520s
 h4	299	0m6.578s
+DM5	359	0m0.024s
+DM6	361	0m0.024s
 DM	372	0m0.023s
+DM4	379	0m0.025s
 DM2	381	0m0.026s
 D3	387	0m0.024s
-DM3	417	0m0.022s
+DM3	417	0m0.023s
 DistanteComPai	533	0m0.022s
 h2	571	0m0.115s
 h1	582	0m0.105s
@@ -1334,10 +1619,13 @@ Ordenado por: NUM_PASSOS
 h4	60	0m2.486s
 h6	60	0m2.507s
 D3	68	0m0.017s
+DM6	73	0m0.018s
 mais_distante	73	0m0.015s
+DM5	75	0m0.019s
 DistanteComPai	79	0m0.016s
 DM	79	0m0.017s
-DM3	80	0m0.018s
+DM3	80	0m0.017s
+DM4	82	0m0.019s
 DM2	83	0m0.016s
 h2	88	0m0.156s
 maior_cluster	88	0m0.075s
@@ -1347,6 +1635,9 @@ Ordenado por: NUM_PASSOS
 
 h4	70	0m2.793s
 h6	70	0m2.812s
+DM5	75	0m0.018s
+DM6	76	0m0.020s
+DM4	77	0m0.018s
 D3	79	0m0.017s
 DM	80	0m0.017s
 DM2	84	0m0.019s
@@ -1362,9 +1653,12 @@ Ordenado por: NUM_PASSOS
 h4	70	0m2.748s
 h6	70	0m2.822s
 D3	78	0m0.018s
+DM5	82	0m0.018s
+DM6	83	0m0.022s
 DistanteComPai	86	0m0.016s
 mais_distante	86	0m0.015s
 DM2	87	0m0.020s
+DM4	89	0m0.020s
 DM	89	0m0.018s
 DM3	92	0m0.018s
 h2	93	0m0.164s
@@ -1376,6 +1670,9 @@ Ordenado por: NUM_PASSOS
 h4	68	0m2.844s
 h6	68	0m2.955s
 D3	73	0m0.018s
+DM6	76	0m0.017s
+DM5	77	0m0.018s
+DM4	80	0m0.023s
 DM	82	0m0.016s
 DistanteComPai	83	0m0.018s
 DM2	85	0m0.016s
@@ -1388,14 +1685,17 @@ h1	92	0m0.189s
 Ordenado por: NUM_PASSOS
 
 D3	72	0m0.019s
+DM6	72	0m0.018s
+DM5	73	0m0.019s
 DM	73	0m0.017s
 h4	73	0m3.229s
 h6	73	0m3.352s
+DM4	75	0m0.018s
 mais_distante	76	0m0.014s
 DistanteComPai	78	0m0.016s
 DM2	78	0m0.017s
 h1	81	0m0.141s
-DM3	83	0m0.017s
+DM3	83	0m0.018s
 h2	84	0m0.184s
 maior_cluster	84	0m0.076s
 50_100_4_5
@@ -1404,11 +1704,14 @@ Ordenado por: NUM_PASSOS
 h4	61	0m2.523s
 h6	61	0m2.531s
 D3	66	0m0.022s
+DM6	66	0m0.017s
+DM5	68	0m0.017s
 DM	70	0m0.017s
 DistanteComPai	72	0m0.018s
 DM2	75	0m0.018s
-DM3	75	0m0.018s
+DM3	75	0m0.017s
 mais_distante	76	0m0.015s
+DM4	77	0m0.018s
 h2	84	0m0.156s
 maior_cluster	84	0m0.076s
 h1	88	0m0.289s
@@ -1418,10 +1721,13 @@ Ordenado por: NUM_PASSOS
 h4	67	0m2.684s
 h6	67	0m2.731s
 D3	73	0m0.023s
+DM5	74	0m0.018s
+DM6	76	0m0.019s
 DM2	83	0m0.017s
+DM4	84	0m0.018s
 DistanteComPai	85	0m0.016s
 DM	85	0m0.017s
-DM3	89	0m0.019s
+DM3	89	0m0.017s
 mais_distante	92	0m0.015s
 h1	95	0m0.215s
 h2	97	0m0.186s
@@ -1432,13 +1738,16 @@ Ordenado por: NUM_PASSOS
 h6	79	0m3.931s
 h4	80	0m3.296s
 D3	81	0m0.017s
+DM5	81	0m0.019s
+DM6	82	0m0.019s
 DM	83	0m0.017s
 DM2	87	0m0.017s
 DistanteComPai	89	0m0.016s
 h2	90	0m0.137s
 maior_cluster	90	0m0.115s
+DM4	91	0m0.019s
 h1	91	0m0.179s
-DM3	92	0m0.019s
+DM3	92	0m0.017s
 mais_distante	92	0m0.014s
 50_100_4_8
 Ordenado por: NUM_PASSOS
@@ -1446,9 +1755,12 @@ Ordenado por: NUM_PASSOS
 h4	67	0m3.118s
 h6	67	0m2.946s
 DM	78	0m0.017s
+DM5	79	0m0.017s
+DM6	80	0m0.017s
 DM2	81	0m0.017s
 D3	83	0m0.020s
-DM3	89	0m0.024s
+DM4	84	0m0.017s
+DM3	89	0m0.018s
 h2	91	0m0.440s
 maior_cluster	91	0m0.135s
 mais_distante	91	0m0.015s
@@ -1458,6 +1770,9 @@ h1	100	0m0.238s
 Ordenado por: NUM_PASSOS
 
 D3	76	0m0.017s
+DM6	76	0m0.019s
+DM5	77	0m0.018s
+DM4	79	0m0.019s
 DistanteComPai	81	0m0.016s
 DM2	81	0m0.018s
 h4	81	0m4.184s
@@ -1466,7 +1781,7 @@ DM	82	0m0.018s
 mais_distante	85	0m0.013s
 h2	87	0m2.953s
 maior_cluster	87	0m0.138s
-DM3	89	0m0.020s
+DM3	89	0m0.017s
 h1	92	0m0.177s
 50_50_6_0
 Ordenado por: NUM_PASSOS
@@ -1475,8 +1790,11 @@ h6	70	0m1.364s
 h4	71	0m1.119s
 D3	78	0m0.011s
 DM	78	0m0.010s
+DM5	79	0m0.011s
+DM6	81	0m0.011s
+DM4	85	0m0.010s
 DM2	87	0m0.011s
-DM3	90	0m0.012s
+DM3	90	0m0.010s
 h2	93	0m0.279s
 maior_cluster	93	0m0.094s
 DistanteComPai	101	0m0.009s
@@ -1487,10 +1805,13 @@ Ordenado por: NUM_PASSOS
 
 h4	70	0m0.981s
 h6	70	0m0.909s
+DM6	83	0m0.010s
 D3	84	0m0.010s
+DM5	84	0m0.010s
+DM4	86	0m0.011s
 DM	87	0m0.010s
 DM2	89	0m0.010s
-DM3	91	0m0.012s
+DM3	91	0m0.010s
 h1	95	0m0.960s
 h2	98	0m0.491s
 maior_cluster	98	0m0.101s
@@ -1501,10 +1822,13 @@ Ordenado por: NUM_PASSOS
 
 h4	65	0m0.925s
 h6	65	0m0.915s
+DM5	70	0m0.010s
 DM	74	0m0.010s
 D3	75	0m0.010s
+DM6	75	0m0.010s
+DM4	76	0m0.010s
 DM2	77	0m0.010s
-DM3	78	0m0.011s
+DM3	78	0m0.010s
 h2	84	0m0.150s
 maior_cluster	84	0m0.060s
 DistanteComPai	91	0m0.009s
@@ -1515,12 +1839,15 @@ Ordenado por: NUM_PASSOS
 
 h4	75	0m1.009s
 h6	75	0m1.073s
+DM6	81	0m0.010s
 DM	82	0m0.010s
+DM4	83	0m0.011s
+DM5	85	0m0.010s
 D3	88	0m0.011s
 DM2	88	0m0.011s
 h2	88	0m0.143s
 maior_cluster	88	0m0.058s
-DM3	92	0m0.011s
+DM3	92	0m0.010s
 DistanteComPai	99	0m0.009s
 mais_distante	99	0m0.009s
 h1	100	0m0.145s
@@ -1530,7 +1857,10 @@ Ordenado por: NUM_PASSOS
 h4	70	0m0.943s
 h6	70	0m1.048s
 DM2	75	0m0.011s
+DM5	75	0m0.010s
 DM	75	0m0.010s
+DM4	77	0m0.010s
+DM6	77	0m0.010s
 D3	78	0m0.010s
 DM3	84	0m0.010s
 DistanteComPai	96	0m0.009s
@@ -1543,11 +1873,14 @@ Ordenado por: NUM_PASSOS
 
 h4	71	0m1.025s
 h6	71	0m0.958s
+DM5	73	0m0.011s
+DM6	74	0m0.011s
 D3	76	0m0.010s
 DM	80	0m0.010s
+DM4	82	0m0.010s
 DM2	89	0m0.010s
 h1	89	0m0.135s
-DM3	91	0m0.011s
+DM3	91	0m0.010s
 DistanteComPai	94	0m0.009s
 h2	94	0m0.161s
 maior_cluster	94	0m0.071s
@@ -1557,8 +1890,11 @@ Ordenado por: NUM_PASSOS
 
 h4	77	0m1.141s
 h6	77	0m0.963s
+DM5	80	0m0.012s
+DM6	83	0m0.011s
 D3	87	0m0.011s
 DM	87	0m0.011s
+DM4	88	0m0.010s
 DM2	92	0m0.010s
 DM3	93	0m0.010s
 h2	97	0m0.169s
@@ -1572,8 +1908,11 @@ Ordenado por: NUM_PASSOS
 h4	70	0m1.071s
 h6	70	0m1.039s
 D3	76	0m0.013s
+DM6	76	0m0.010s
+DM5	77	0m0.010s
 DM3	82	0m0.010s
 DM2	84	0m0.010s
+DM4	86	0m0.010s
 DM	88	0m0.010s
 h2	89	0m0.136s
 maior_cluster	89	0m0.092s
@@ -1586,8 +1925,11 @@ Ordenado por: NUM_PASSOS
 h6	71	0m1.547s
 D3	76	0m0.013s
 h4	76	0m1.143s
+DM6	81	0m0.010s
 DM2	84	0m0.010s
+DM4	84	0m0.010s
 DM	84	0m0.010s
+DM5	86	0m0.011s
 DM3	87	0m0.010s
 h2	91	0m0.142s
 maior_cluster	91	0m0.062s
@@ -1599,11 +1941,14 @@ Ordenado por: NUM_PASSOS
 
 h4	77	0m1.152s
 h6	79	0m0.989s
+DM5	85	0m0.010s
 D3	87	0m0.010s
+DM6	89	0m0.010s
 DM2	91	0m0.010s
 DM	95	0m0.011s
 h2	95	0m0.663s
 maior_cluster	95	0m0.065s
+DM4	97	0m0.010s
 DistanteComPai	108	0m0.011s
 h1	109	0m0.329s
 DM3	110	0m0.010s
@@ -1615,10 +1960,13 @@ maior_cluster	0	0m0.001s
 mais_distante	NULL	NULL
 h4	396	0m4.236s
 h6	400	0m4.420s
+DM6	401	0m0.018s
+DM5	404	0m0.018s
 DM	419	0m0.019s
+DM4	430	0m0.018s
 DM2	455	0m0.017s
 D3	473	0m0.019s
-DM3	474	0m0.019s
+DM3	474	0m0.017s
 h2	616	0m0.116s
 h1	667	0m0.144s
 DistanteComPai	687	0m0.016s
@@ -1629,9 +1977,12 @@ maior_cluster	0	0m0.001s
 mais_distante	NULL	NULL
 h4	365	0m4.165s
 h6	365	0m4.253s
+DM5	415	0m0.018s
 DM	418	0m0.017s
+DM6	423	0m0.018s
 DM2	444	0m0.018s
 D3	454	0m0.018s
+DM4	459	0m0.019s
 DM3	493	0m0.017s
 h2	611	0m0.083s
 h1	630	0m0.158s
@@ -1641,8 +1992,11 @@ Ordenado por: NUM_PASSOS
 
 maior_cluster	0	0m0.044s
 mais_distante	NULL	NULL
+DM6	399	0m0.018s
 h6	400	0m4.806s
 DM	405	0m0.018s
+DM4	412	0m0.018s
+DM5	413	0m0.022s
 h4	414	0m4.922s
 DM2	417	0m0.017s
 DM3	451	0m0.017s
@@ -1657,7 +2011,10 @@ maior_cluster	0	0m0.001s
 mais_distante	NULL	NULL
 h4	353	0m4.143s
 h6	369	0m4.245s
+DM6	388	0m0.018s
+DM5	389	0m0.020s
 DM	395	0m0.019s
+DM4	399	0m0.018s
 DM2	417	0m0.019s
 D3	463	0m0.018s
 DM3	463	0m0.017s
@@ -1671,10 +2028,13 @@ h4	36	0m0.650s
 h6	36	0m0.587s
 D3	38	0m0.006s
 DistanteComPai	38	0m0.006s
+DM5	40	0m0.006s
+DM4	41	0m0.006s
+DM6	41	0m0.007s
 mais_distante	41	0m0.006s
 DM	42	0m0.007s
 DM2	43	0m0.007s
-DM3	43	0m0.006s
+DM3	43	0m0.007s
 h1	44	0m0.150s
 h2	45	0m0.100s
 maior_cluster	45	0m0.014s
@@ -1684,9 +2044,12 @@ Ordenado por: NUM_PASSOS
 D3	34	0m0.007s
 h4	35	0m0.677s
 h6	35	0m0.596s
+DM4	37	0m0.007s
+DM5	37	0m0.007s
+DM6	37	0m0.007s
 DistanteComPai	40	0m0.007s
 DM2	40	0m0.007s
-DM3	40	0m0.006s
+DM3	40	0m0.008s
 DM	40	0m0.006s
 mais_distante	40	0m0.006s
 h2	41	0m0.196s
@@ -1697,10 +2060,13 @@ Ordenado por: NUM_PASSOS
 
 h4	38	0m0.608s
 h6	38	0m0.604s
+DM6	42	0m0.006s
+DM4	43	0m0.007s
 h2	43	0m0.137s
 maior_cluster	43	0m0.015s
 DistanteComPai	44	0m0.007s
 DM3	44	0m0.006s
+DM5	44	0m0.007s
 D3	45	0m0.006s
 DM2	45	0m0.007s
 DM	45	0m0.006s
@@ -1716,9 +2082,12 @@ DistanteComPai	36	0m0.007s
 mais_distante	36	0m0.006s
 DM2	39	0m0.006s
 DM	39	0m0.007s
+DM4	39	0m0.007s
 h2	40	0m0.236s
 maior_cluster	40	0m0.014s
-DM3	41	0m0.007s
+DM3	41	0m0.006s
+DM5	41	0m0.007s
+DM6	41	0m0.006s
 h1	42	0m0.135s
 77_32_3_4
 Ordenado por: NUM_PASSOS
@@ -1726,8 +2095,11 @@ Ordenado por: NUM_PASSOS
 D3	32	0m0.006s
 h4	32	0m0.555s
 h6	32	0m0.701s
+DM5	34	0m0.006s
+DM6	34	0m0.007s
 DistanteComPai	35	0m0.006s
 DM2	37	0m0.006s
+DM4	37	0m0.007s
 DM	38	0m0.007s
 DM3	39	0m0.006s
 mais_distante	39	0m0.005s
@@ -1740,11 +2112,14 @@ Ordenado por: NUM_PASSOS
 D3	32	0m0.006s
 h4	33	0m0.609s
 h6	33	0m0.670s
+DM4	34	0m0.007s
 DistanteComPai	35	0m0.007s
 DM	36	0m0.007s
+DM5	36	0m0.007s
+DM6	36	0m0.006s
 mais_distante	37	0m0.005s
 DM2	38	0m0.006s
-DM3	38	0m0.006s
+DM3	38	0m0.007s
 h1	39	0m0.864s
 h2	40	0m0.105s
 maior_cluster	40	0m0.012s
@@ -1756,11 +2131,14 @@ h6	28	0m0.591s
 D3	29	0m0.007s
 DistanteComPai	29	0m0.006s
 DM	30	0m0.006s
+DM6	30	0m0.007s
 mais_distante	30	0m0.006s
+DM5	31	0m0.007s
+DM4	35	0m0.006s
 h2	36	0m0.110s
 maior_cluster	36	0m0.013s
 DM2	37	0m0.006s
-DM3	37	0m0.006s
+DM3	37	0m0.007s
 h1	39	0m0.240s
 77_32_3_7
 Ordenado por: NUM_PASSOS
@@ -1770,8 +2148,11 @@ h6	35	0m0.610s
 D3	37	0m0.007s
 mais_distante	37	0m0.006s
 DistanteComPai	38	0m0.006s
+DM5	38	0m0.006s
+DM6	38	0m0.006s
 DM2	40	0m0.007s
 DM	40	0m0.006s
+DM4	41	0m0.007s
 DM3	42	0m0.006s
 h2	42	0m0.121s
 maior_cluster	42	0m0.014s
@@ -1780,14 +2161,17 @@ h1	45	0m0.154s
 Ordenado por: NUM_PASSOS
 
 D3	35	0m0.006s
+DM5	35	0m0.006s
+DM6	35	0m0.007s
 h4	35	0m0.612s
 h6	35	0m0.580s
 DistanteComPai	38	0m0.006s
 DM2	38	0m0.007s
-DM3	39	0m0.006s
+DM3	39	0m0.007s
 DM	39	0m0.006s
 h2	39	0m0.109s
 maior_cluster	39	0m0.014s
+DM4	40	0m0.007s
 mais_distante	40	0m0.006s
 h1	45	0m0.119s
 77_32_3_9
@@ -1795,6 +2179,9 @@ Ordenado por: NUM_PASSOS
 
 h4	36	0m0.564s
 h6	36	0m0.571s
+DM5	38	0m0.006s
+DM6	38	0m0.006s
+DM4	40	0m0.006s
 mais_distante	40	0m0.005s
 D3	41	0m0.007s
 DM2	41	0m0.007s
@@ -1802,7 +2189,7 @@ DM	41	0m0.006s
 DistanteComPai	43	0m0.007s
 h2	44	0m0.151s
 maior_cluster	44	0m0.015s
-DM3	45	0m0.006s
+DM3	45	0m0.007s
 h1	47	0m0.594s
 100_100_100_0
 Ordenado por: NUM_PASSOS
@@ -1810,10 +2197,13 @@ Ordenado por: NUM_PASSOS
 maior_cluster	0	0m0.002s
 h4	974	1m24.898s
 h6	1030	1m31.959s
+DM6	1192	0m0.095s
+DM4	1211	0m0.093s
+DM5	1212	0m0.095s
 DM2	1217	0m0.092s
 DM	1237	0m0.092s
 D3	1343	0m0.100s
-DM3	1360	0m0.087s
+DM3	1360	0m0.084s
 h2	1985	0m1.229s
 h1	2075	0m1.382s
 DistanteComPai	2102	0m0.074s
@@ -1824,10 +2214,13 @@ Ordenado por: NUM_PASSOS
 maior_cluster	0	0m0.002s
 h4	1011	1m32.097s
 h6	1041	1m34.000s
+DM5	1101	0m0.119s
 DM	1121	0m0.134s
 DM2	1126	0m0.095s
+DM6	1131	0m0.101s
+DM4	1156	0m0.132s
 D3	1167	0m0.128s
-DM3	1303	0m0.090s
+DM3	1303	0m0.133s
 DistanteComPai	1892	0m0.077s
 mais_distante	1947	0m0.070s
 h2	1956	0m1.349s
@@ -1838,9 +2231,12 @@ Ordenado por: NUM_PASSOS
 maior_cluster	0	0m0.002s
 h6	946	1m28.939s
 h4	1008	1m27.978s
+DM6	1146	0m0.098s
 DM	1181	0m0.095s
+DM5	1189	0m0.096s
+DM4	1217	0m0.167s
 DM2	1225	0m0.131s
-DM3	1310	0m0.110s
+DM3	1310	0m0.094s
 D3	1354	0m0.093s
 mais_distante	1930	0m0.071s
 DistanteComPai	1951	0m0.076s
@@ -1850,12 +2246,15 @@ h2	2123	0m1.305s
 Ordenado por: NUM_PASSOS
 
 maior_cluster	0	0m0.002s
+DM5	1056	0m0.146s
 h6	1083	1m37.590s
+DM6	1098	0m0.143s
 DM	1103	0m0.108s
 h4	1109	1m38.375s
+DM4	1114	0m0.159s
 DM2	1115	0m0.104s
 D3	1130	0m0.105s
-DM3	1261	0m0.123s
+DM3	1261	0m0.090s
 DistanteComPai	1875	0m0.078s
 mais_distante	1877	0m0.073s
 h2	1981	0m1.259s
@@ -1867,9 +2266,12 @@ maior_cluster	0	0m0.002s
 mais_distante	NULL	NULL
 h4	897	1m16.589s
 h6	931	1m25.828s
+DM5	1111	0m0.165s
 DM2	1117	0m0.129s
 DM	1119	0m0.119s
-DM3	1275	0m0.152s
+DM4	1143	0m0.093s
+DM6	1150	0m0.098s
+DM3	1275	0m0.116s
 D3	1284	0m0.126s
 h1	1922	0m1.114s
 DistanteComPai	1945	0m0.076s
@@ -1881,10 +2283,13 @@ maior_cluster	0	0m0.002s
 mais_distante	NULL	NULL
 h6	906	1m27.493s
 h4	915	1m27.910s
+DM5	1064	0m0.147s
+DM6	1067	0m0.099s
+DM4	1099	0m0.091s
 DM	1101	0m0.153s
 DM2	1121	0m0.087s
 D3	1186	0m0.173s
-DM3	1217	0m0.152s
+DM3	1217	0m0.130s
 DistanteComPai	1744	0m0.075s
 h1	1874	0m1.278s
 h2	1905	0m1.135s
@@ -1895,10 +2300,13 @@ maior_cluster	0	0m0.002s
 mais_distante	NULL	NULL
 h6	932	1m26.262s
 h4	1005	1m37.746s
+DM6	1082	0m0.095s
+DM5	1090	0m0.175s
 DM	1105	0m0.156s
+DM4	1134	0m0.089s
 DM2	1163	0m0.113s
 D3	1205	0m0.162s
-DM3	1260	0m0.159s
+DM3	1260	0m0.151s
 DistanteComPai	1766	0m0.074s
 h2	1910	0m0.970s
 h1	1917	0m1.090s
@@ -1910,9 +2318,12 @@ mais_distante	NULL	NULL
 h4	878	1m23.257s
 h6	974	1m31.754s
 DM	1103	0m0.165s
+DM6	1103	0m0.142s
+DM5	1120	0m0.094s
+DM4	1158	0m0.133s
 DM2	1159	0m0.136s
 D3	1173	0m0.112s
-DM3	1239	0m0.097s
+DM3	1239	0m0.146s
 h1	1782	0m1.067s
 DistanteComPai	1790	0m0.075s
 h2	1925	0m0.970s
@@ -1924,9 +2335,12 @@ mais_distante	NULL	NULL
 h6	215	0m0.744s
 h4	217	0m0.665s
 DM2	258	0m0.015s
+DM6	262	0m0.008s
+DM5	265	0m0.013s
 DM	269	0m0.010s
+DM4	271	0m0.022s
 D3	273	0m0.007s
-DM3	308	0m0.016s
+DM3	308	0m0.018s
 DistanteComPai	381	0m0.010s
 h2	430	0m0.021s
 h1	453	0m0.040s
@@ -1937,10 +2351,13 @@ maior_cluster	0	0m0.001s
 mais_distante	NULL	NULL
 h4	197	0m0.731s
 h6	197	0m0.781s
+DM5	221	0m0.011s
 DM2	223	0m0.006s
+DM6	226	0m0.009s
 DM	232	0m0.011s
+DM4	232	0m0.014s
 D3	240	0m0.007s
-DM3	254	0m0.009s
+DM3	254	0m0.014s
 DistanteComPai	330	0m0.008s
 h1	465	0m0.049s
 h2	465	0m0.033s
@@ -1949,12 +2366,15 @@ Ordenado por: NUM_PASSOS
 
 maior_cluster	0	0m0.001s
 mais_distante	NULL	NULL
+DM5	222	0m0.011s
 h6	233	0m0.918s
+DM6	234	0m0.009s
 DM2	235	0m0.009s
 h4	237	0m0.843s
 D3	239	0m0.007s
+DM4	239	0m0.012s
 DM	246	0m0.011s
-DM3	260	0m0.007s
+DM3	260	0m0.012s
 DistanteComPai	352	0m0.009s
 h2	415	0m0.033s
 h1	444	0m0.051s
@@ -1965,9 +2385,12 @@ maior_cluster	0	0m0.001s
 mais_distante	NULL	NULL
 h4	196	0m0.692s
 h6	205	0m0.785s
+DM4	253	0m0.012s
 DM2	262	0m0.006s
 DM	262	0m0.010s
-DM3	289	0m0.006s
+DM6	262	0m0.009s
+DM5	263	0m0.010s
+DM3	289	0m0.012s
 D3	299	0m0.006s
 h2	448	0m0.039s
 DistanteComPai	456	0m0.007s

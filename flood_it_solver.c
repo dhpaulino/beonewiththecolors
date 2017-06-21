@@ -466,7 +466,7 @@ void mesclar(cluster raiz, int cor){
       //printf("\nPintado:%i\n", cv->id);
       cv->desativado = 1;
       remove_no(raiz->v_agm, no_v, NULL);
-      //remover_cluster(cv);
+      remover_cluster(cv);
       //ARRUMAr
       tornar_vizinho_da_raiz(raiz, cv->vizinhos);
       //concatena_lista(raiz->vizinhos, cv->vizinhos);
@@ -552,7 +552,7 @@ Fila heuristica_mais_longe_pela_cor(grafo g, int ncores){
 
     for(int i=1;i<=ncores;++i){
       if(qtd_clusters[i] > 0){
-        float peso = 0.3*soma_mais_distante[i] + 0.3*qtd_clusters[i] + 0.4*qtd_vizinhos[i];
+        float peso = 0.7*soma_mais_distante[i] + 0.15*qtd_clusters[i] + 0.15*qtd_vizinhos[i];
         //printf("peso:%f cor:%i\n",peso, i);
         if(peso > maior_peso){
           //printf("maior\n");
