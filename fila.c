@@ -18,7 +18,7 @@ int vaziaFila(Fila fila){
 }
 
 int enfileira(void* conteudo, Fila fila){
-  ElementoFila ef = malloc(sizeof(struct ElementoFila));
+  struct ElementoFila* ef = malloc(sizeof(struct ElementoFila));
   if(!ef)
     return 0;
   ef->conteudo = conteudo;

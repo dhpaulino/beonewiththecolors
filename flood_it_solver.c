@@ -351,6 +351,14 @@ cluster marcar_agm(grafo g){
   enfileira(g->primeiro, f);
 
   while(atual = desenfileira(f)){
+    //destroi_lista(atual->v_agm, NULL);
+    /*no pp = primeiro_no(atual->v_agm);
+    if(pp){
+      cluster lol = conteudo(pp);
+      printf(" atual %i primeiro %i\n", atual->id, lol->id );
+    }*/
+    atual->v_agm = constroi_lista();
+    //printf("PAI: %i \n", atual->id);
     atual->marcado = 2;
     enfileira(atual, marcados);
     if(atual->altura > mais_distante->altura)
@@ -366,6 +374,7 @@ cluster marcar_agm(grafo g){
         cv->altura = atual->altura+1;
         insere_lista(cv, atual->v_agm);
         enfileira(cv, f);
+        //printf("FILHO_ZERO: %i \n", cv->id);
       }else if(cv->marcado == 1){
         //diminuir ifs
         if(cv->pai->altura == atual->altura){
@@ -376,7 +385,9 @@ cluster marcar_agm(grafo g){
             if(tamanho_lista(cv->pai->v_agm) == 0){
               mudar_dist_folha(cv->pai);
             }
+             //printf("FILHO_UM: %i OLD_PAI:%i\n", cv->id, cv->pai->id);
             cv->pai = atual;
+           
             insere_lista(cv, atual->v_agm);
           }
         }
@@ -431,9 +442,7 @@ void tornar_vizinho_da_raiz(cluster raiz, lista vizinhos){
   //printf("raiz:%i\n", raiz->desativado);
   for(;no_v; no_v = proximo_no(no_v)){
     cv = (cluster)conteudo(no_v);
-    if(cv->desativado){
-      remove_no(vizinhos, no_v, NULL);
-    }else{
+    
       if(cv->pai == raiz){
         remove_no(vizinhos, no_v, NULL);
       }else{
@@ -441,17 +450,20 @@ void tornar_vizinho_da_raiz(cluster raiz, lista vizinhos){
         if(cv != raiz){
           //printf("PAI:%i CLUSTER:%i\n", cv->pai->id, cv->id);
           //mudar_dist_folha(cv->pai);
-          arruma_mais_distante(cv->pai, cv);
+          //arruma_mais_distante(cv->pai, cv);
+          //zprintf("add raiz %i\n", cv->id);
           cv->pai = raiz;
-          cv->altura--;
+          insere_lista(raiz, cv->vizinhos);
         }else{
           remove_no(vizinhos, no_v, NULL);
         }
       }
-    }
+    
   }
   concatena_lista(raiz->v_agm, vizinhos);
+  concatena_lista(raiz->vizinhos, vizinhos);
 }
+
 
 void mesclar(cluster raiz, int cor){
     //no no_v = primeiro_no(raiz->vizinhos);
@@ -465,10 +477,15 @@ void mesclar(cluster raiz, int cor){
       //TODO: desativar em todos os  vizinhos
       //printf("\nPintado:%i\n", cv->id);
       cv->desativado = 1;
-      remove_no(raiz->v_agm, no_v, NULL);
-      remover_cluster(cv);
+      
+      
       //ARRUMAr
+      //printf("removido %i\n", cv->id);
+
+      remover_cluster(cv);
+      remove_no(raiz->v_agm, no_v, NULL);
       tornar_vizinho_da_raiz(raiz, cv->vizinhos);
+      
       //concatena_lista(raiz->vizinhos, cv->vizinhos);
     }
   }
@@ -512,10 +529,6 @@ Fila heuristica_mais_longe(grafo g){
   return solucao;
 }
 
-typedef struct acao{
-
-int cor, peso;
-} acao;
 
 
 Fila heuristica_mais_longe_pela_cor(grafo g, int ncores){
@@ -574,6 +587,15 @@ Fila heuristica_mais_longe_pela_cor(grafo g, int ncores){
     enfileira(cor_solucao, solucao);
     mesclar(raiz, cor_maior_peso);
 
+     no_v = primeiro_no(raiz->vizinhos);
+     /*for(;no_v;no_v = proximo_no(no_v)){
+      cluster cv = conteudo(no_v);
+        
+        printf("viz raiz: %i\n", cv->id);
+    }
+    printf("marcar\n");*/
+    marcar_agm(g);
+
 
   }
 
@@ -609,6 +631,7 @@ int main(int argc, char **argv) {
 
   cluster mais_distante = marcar_agm(g);
   print_agm(g);
+  //printf("HUERISTICA\n");
   //Fila solucao = heuristica_mais_longe(g);
   Fila solucao = heuristica_mais_longe_pela_cor(g, m.ncores);
   print_solucao(solucao);

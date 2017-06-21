@@ -46,6 +46,7 @@ void remover_cluster(cluster c){
 		 v = conteudo(no_v);
 		remove_pelo_conteudo(c, v->vizinhos);
 	}
+	
 }
 
 
