@@ -466,6 +466,7 @@ void mesclar(cluster raiz, int cor){
       //printf("\nPintado:%i\n", cv->id);
       cv->desativado = 1;
       remove_no(raiz->v_agm, no_v, NULL);
+      //remover_cluster(cv);
       //ARRUMAr
       tornar_vizinho_da_raiz(raiz, cv->vizinhos);
       //concatena_lista(raiz->vizinhos, cv->vizinhos);
@@ -474,6 +475,7 @@ void mesclar(cluster raiz, int cor){
   
   raiz->cor = cor;
 }
+
 Fila heuristica_mais_longe(grafo g){
   cluster raiz = g->primeiro;
 
@@ -524,6 +526,7 @@ Fila heuristica_mais_longe_pela_cor(grafo g, int ncores){
   
   int soma_mais_distante[ncores+1];
   int qtd_clusters[ncores+1];
+  int qtd_vizinhos[ncores+1];
   while(1){
   
 
@@ -531,6 +534,7 @@ Fila heuristica_mais_longe_pela_cor(grafo g, int ncores){
     for(int i=0;i<=ncores;i++){
       soma_mais_distante[i] = 0;
       qtd_clusters[i] = 0;
+      qtd_vizinhos[i] = 0;
     }
     no no_v = primeiro_no(raiz->v_agm);
     
@@ -540,6 +544,7 @@ Fila heuristica_mais_longe_pela_cor(grafo g, int ncores){
         
         soma_mais_distante[cv->cor]+= cv->maior_dist_folha;
         qtd_clusters[cv->cor]++;
+        qtd_vizinhos[cv->cor] += tamanho_lista(cv->vizinhos);
     }
 
     float maior_peso = 0;
@@ -547,7 +552,7 @@ Fila heuristica_mais_longe_pela_cor(grafo g, int ncores){
 
     for(int i=1;i<=ncores;++i){
       if(qtd_clusters[i] > 0){
-        float peso = soma_mais_distante[i] + qtd_clusters[i];
+        float peso = 0.3*soma_mais_distante[i] + 0.3*qtd_clusters[i] + 0.4*qtd_vizinhos[i];
         //printf("peso:%f cor:%i\n",peso, i);
         if(peso > maior_peso){
           //printf("maior\n");
